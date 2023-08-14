@@ -3,7 +3,6 @@ import { StaticRaceInformation, DynamicRaceInformation } from "../../hooks/raceI
 import { driverInfo } from "../../data/driverInfo";
 import { PredictionForm } from "../../components/forms";
 import "../../assets/global.css";
-import BelgianFlag from "../../assets/interface/media/flags/belgium_flag.svg";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
