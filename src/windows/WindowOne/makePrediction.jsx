@@ -37,22 +37,22 @@ export default function MakePrediction() {
       };
 
     // FORM HANDLING
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         
-    //     const formData = new FormData(event.target);
-    //     const queryParams = new URLSearchParams(formData);
+        const formData = new FormData(event.target);
+        const queryParams = new URLSearchParams(formData);
     
-    //     const url = `/api/add-prediction?${queryParams.toString()}`;
+        const url = `/api/add-prediction?${queryParams.toString()}`;
 
-    //     const response = await fetch(url);
+        const response = await fetch(url);
     
-    //     if (response.ok) {
-    //         console.log("SUCCESS");
-    //     } else {
-    //       console.log("ERROR");
-    //     }
-    //   };
+        if (response.ok) {
+            console.log("SUCCESS");
+        } else {
+          console.log("ERROR");
+        }
+      };
 
     
     return (
@@ -101,12 +101,12 @@ export default function MakePrediction() {
                     </table>
                 </div>
 
-                {/* <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     {pickedDrivers.map((driver, index) => (
                         <input className="submissionForm" type="text" key={index} name={`P${index + 1}`} defaultValue={driver.lastName} />
                     ))}
                     <input className={pickedDrivers.length === 0 ? "submissionFormSubmitBtnHide" : "submissionFormSubmitBtn"} type="submit" value="Submit"/>
-                </form> */}
+                </form>
             </div>
         </div>
     )
