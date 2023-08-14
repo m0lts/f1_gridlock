@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="1600"
+   height="1066.6667"
+   viewBox="0 0 1600 1066.6667"
+   sodipodi:docname="canada_flag.eps"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,1066.6667)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 0,8000 H 12000 V 0 H 0 v 8000"
+         style="fill:#ed5565;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="M 3000,8000 H 9000 V 0 H 3000 v 8000"
+         style="fill:#f5f7fa;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path14" />
+      <path
+         d="m 5999.9,6468.72 -422.45,-782.34 c -47.94,-85.03 -133.83,-77.15 -219.72,-29.65 l -305.85,157.25 227.96,-1201.67 c 47.94,-219.54 -105.87,-219.54 -181.77,-124.62 L 4564.31,5081 4477.65,4779.7 c -9.99,-39.56 -53.93,-81.12 -119.84,-71.22 l -674.95,140.9 177.28,-639.95 c 37.95,-142.4 67.55,-201.36 -38.31,-238.91 l -240.58,-112.27 1161.88,-937.07 c 45.99,-35.43 69.23,-99.19 52.86,-156.93 l -101.7,-331.34 c 400.06,45.79 758.51,114.67 1158.77,157.1 35.33,3.74 94.48,-54.16 94.24,-94.81 l -53,-1213.92 h 194.5 l -30.61,1211.31 c -0.25,40.66 53.42,101.16 88.75,97.42 400.26,-42.43 758.71,-111.31 1158.77,-157.1 l -101.69,331.34 c -16.37,57.74 6.86,121.5 52.85,156.93 l 1161.88,937.07 -240.57,112.27 c -105.87,37.55 -76.27,96.51 -38.32,238.91 l 177.28,639.95 -674.95,-140.9 c -65.91,-9.9 -109.85,31.66 -119.84,71.22 l -86.66,301.3 -533.76,-593.31 c -75.9,-94.92 -229.71,-94.92 -181.77,124.62 l 227.96,1201.67 -305.85,-157.25 c -85.89,-47.5 -171.78,-55.38 -219.72,29.65"
+         style="fill:#ed5565;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path16" />
+    </g>
+  </g>
+</svg>

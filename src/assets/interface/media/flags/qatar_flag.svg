@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 1600 1066.6667"
+   height="1066.6667"
+   width="1600"
+   xml:space="preserve"
+   id="svg2"
+   version="1.1"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.3333333,0,0,-1.3333333,0,1066.6667)"
+     id="g10"><g
+       transform="scale(0.1)"
+       id="g12"><path
+         id="path14"
+         style="fill:#a54577;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 0,8000 H 12000 V 0 H 0 v 8000" /><path
+         id="path16"
+         style="fill:#f5f7fa;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 3379.5,0 H 0 V 8000 H 3379.5 L 5020.23,7555.55 3379.5,7111.11 5020.23,6666.67 3379.5,6222.22 5020.23,5777.78 3379.5,5333.33 5020.23,4888.89 3379.5,4444.44 5020.23,4000 3379.5,3555.56 5020.23,3111.11 3379.5,2666.67 5020.23,2222.22 3379.5,1777.78 5020.23,1333.33 3379.5,888.891 5020.23,444.441 3379.5,0" /></g></g></svg>

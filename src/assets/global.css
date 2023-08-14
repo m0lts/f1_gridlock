@@ -1,0 +1,786 @@
+/* Page setup and common variables */
+
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "Titillium Web", sans-serif;
+  --black: #2b2b2b;
+  --white: #ffffff;
+  --dark-grey: #404040;
+  --light-grey: #EBEBEB;
+  --red: #ff2929;
+  --green: #00BF36;
+  --trans-white:#ffffffb2;
+  --titillium: "Titillium Web", sans-serif;
+}
+
+/* Typography */
+h1,
+h2 {
+  font-family: "Oxygen", sans-serif;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 1rem;
+}
+h3 {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+h4 {
+  text-transform: uppercase;
+}
+@media screen and (max-width:1100px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--titillium);
+  border:none;
+  color:var(--white);
+  border-radius: 5px;
+  cursor: pointer;
+  padding:7px;
+}
+.btn:hover,
+.btn:active {
+  opacity: 0.9;
+}
+.btn:active {
+  border: 1px solid var(--white);
+  opacity: 1;
+}
+
+.signUpBtn {
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
+  color:var(--black);
+  font-size: 1rem;
+}
+.signUpBtn:active {
+  border: 1px solid var(--black);
+}
+.signUpBtnTxt {
+  margin-left: 5px;
+}
+
+.loginBtn {
+  background-color: var(--black);
+  border:1px solid var(--black);
+  font-size: 1rem;
+}
+
+.submitBtn {
+  background-color: var(--dark-grey);
+  border: 1px solid var(--dark-grey);
+  align-self: center;
+  margin-top:75px;
+  font-size: 1.1rem;
+}
+
+
+/* ******STYLING FOR ALL COMPONENTS CONSTANTLY ON PAGE****** */
+/* ****** */
+/* ****** */
+
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+  margin:0 auto;
+  padding:5px 5%;
+  background-color: var(--red);
+}
+.logoImg {
+  width:75px;
+  height:75px;
+}
+.headerRightFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:200px;
+}
+
+.appBackground {
+  background-color: var(--black);
+  border: 1px solid var(--black);
+}
+.windowOne,
+.windowTwo,
+.windowThree,
+.windowFour {
+  border-radius: 25px;
+}
+
+/* Next Race Banner */
+.nextRaceBanner {
+  color:var(--white);
+  padding:2.5% 5%;
+}
+.heroTop {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flagFill {
+  width:50px;
+  height:50px;
+  border-radius: 10px;
+}
+.bannerHeroMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:25px 0;
+}
+.heroMainLeft {
+  width:50%;
+}
+.grandPrixName {
+  padding:5px 0;
+  font-size: 1.5rem;
+}
+.timerBox {
+  border-top:5px solid var(--green);
+  border-right: 5px solid var(--green);
+  border-radius: 0 50px 0 0;
+  width:75%;
+  margin-top: 50px;
+  padding:10px 0;
+}
+.timerTitle {
+  text-transform: uppercase;
+}
+.timer {
+  text-align: center;
+}
+.heroMainRight {
+  width:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap:25px;
+  background-color: var(--dark-grey);
+  border-radius: 25px;
+  padding: 25px;
+}
+.raceName,
+.grandPrixName {
+  font-family: var(--titillium);
+}
+.circuitImg {
+  width:100%;
+}
+.circuitCredit {
+  font-size: 0.75rem;
+}
+/* Next Race banner media queries */
+@media screen and (max-width:1100px) {
+  .heroMainLeft {
+    width:100%;
+  }
+}
+@media screen and (max-width:767px) {
+  .heroMainRight {
+    display: none;
+  }
+}
+
+/* Section 1 (inc. windows 1 and 2)
+INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
+*/
+.windowContent {
+  height:100%;
+  width:100%;
+  background-color: var(--white);
+  border-radius: 0 0 25px 25px;
+}
+.sectionOne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:2.5%;
+}
+.windowOne,
+.windowTwo {
+  background-color: var(--white);
+  width:45%;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width:767px) {
+  .sectionOne {
+    flex-direction: column;
+  }
+  .windowOne,
+  .windowTwo {
+    width:90%;
+    height:1000px;
+  }
+  .windowHeadingTitleAndArrows h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* WINDOWS 1 AND 2 TITLE BANNERS INCLUDING ARROW FUNC */
+.windowHeadingBanners {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  padding: 25px 25px 10px 25px;
+  gap:5px;
+  background-color: var(--light-grey);
+  border-radius: 25px 25px 0 0;
+}
+.windowHeadingTitleAndArrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+.faArrows {
+  padding:5px;
+  cursor: pointer;
+}
+.activeWindowCont {
+  display: flex;
+  width:fit-content;
+  margin:0 auto;
+}
+.activeWindowDot {
+  list-style: none;
+  padding:0 5px;
+}
+.faCircleDot, 
+.faCircle {
+  color: var(--dark-grey);
+  font-size: 0.5rem;
+}
+
+
+
+
+
+
+
+
+/* Section 2 (inc. windows 3 and 4) */
+.sectionTwo {
+  width:100%;
+  margin:2.5% auto;
+}
+.windowThree {
+  background-image: url('./interface/media/images/silverstone_podium.jpg');
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+  width:92.5%;
+  margin:0 auto;
+}
+.windowFour {
+  background-color: var(--light-grey);
+  width:92.5%;
+  margin:0 auto;
+}
+.standingsWindowTitle {
+  color:var(--white);
+  text-transform: uppercase;
+  text-align: center;
+  margin:25px 0;
+}
+
+
+
+
+
+/* ******INDIVIDUAL COMPONENT STYLING****** */
+/* ****** */
+/* ****** */
+
+/* MAKE PREDICTION COMP */
+.makePredictionWindow {
+  width:100%;
+  height:100%;
+}
+.predictionsClosedWindow {
+  display: none;
+}
+.predictionsClosedWindowShow {
+  display: block;
+  height:500px;
+  border-radius: 0 0 25px 25px;
+  background-color: #00BF36;
+}
+.predictionsClosed {
+  display: none;
+}
+.makePredictionInfo {
+  text-align: center;
+  padding:15px;
+  background-color: var(--red);
+  color: var(--white);
+}
+.makePredictionInfoClosed {
+  color: var(--white);
+  border: 1px solid var(--light-grey);
+  background-color: var(--dark-grey);
+  height:100%;
+  border-radius: 0 0 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:25px;
+}
+.hideLock {
+  display: none;
+}
+.showLock {
+  display: block;
+  font-size: 3rem;
+}
+.qualifyingCountdown {
+  font-size: 1.25rem;
+}
+
+/* Prediction Form */
+.makePredictionFormCont {
+  overflow: hidden;
+  border:5px solid green;
+}
+.makePredictionForm {
+  border:1px solid red;
+  height:100%;
+}
+.formOptionCont {
+  border:1px solid black;
+  margin:25px;
+  text-align: center;
+}
+.formOptionCont label {
+  font-size: 0.8rem;
+  color: var(--dark-grey);
+  font-weight: bold;
+}
+.formSelectCont {
+  border:1px solid blue;
+}
+.dropdownElement {
+  border:none;
+  font-family: var(--titillium);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+
+/* Predictions unpicked */
+.unpickedDriversCont {
+  text-align: center;
+  padding:15px;
+}
+.unpickedDrivers {
+  padding:15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.unpickedDriver {
+  list-style: none;
+  margin:15px;
+  cursor: pointer;
+}
+.unpickedDriverNumber {
+  background-color: var(--red);
+  font-weight: bold;
+  font-style: italic;
+  padding:7px;
+  color: var(--white);
+  border-radius: 2px;
+}
+.unpickedDriverFullName {
+  background-color: var(--dark-grey);
+  color: var(--white);
+  padding:5px;
+  box-shadow: 5px 5px 10px var(--light-grey);
+}
+.unpickedDriverFirstName {
+  color:var(--light-grey);
+  font-size: 0.75rem;
+}
+.unpickedDriverLastName {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.pickedDriversTable {
+  width:90%;
+  margin:15px auto;
+}
+.pickedDriversTableHide {
+  display: none;
+}
+.pickedDriversTableHeader {
+  font-size: 0.8rem;
+  color:var(--white);
+  font-weight: 600;
+  text-align: center;
+  background-color: var(--dark-grey);
+}
+.pickedDriversTableHeaderPosition {
+  padding:5px 0;
+}
+.position {
+  text-align: center;
+  font-size: 0.8rem;
+}
+.pickedDriverNumber {
+  color: var(--dark-grey);
+  font-style: italic;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+}
+.pickedDriverTeam {
+  font-size: 0.8rem;
+  color: var(--dark-grey);
+  text-align: center;
+}
+.pickedDriverFirstName {
+  padding-left: 10px;
+  color:var(--dark-grey);
+  font-size: 0.9rem;
+}
+.pickedDriverLastName {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.removeDriver {
+  color: var(--red);
+  cursor: pointer;
+  text-align: center;
+}
+.submissionForm {
+  display: none;
+}
+.submissionFormSubmitBtn {
+  display: block;
+  margin:0 auto;
+  margin-bottom: 25px;
+  border:1px solid var(--dark-grey);
+  border-radius: 5px;
+  padding:10px;
+  font-family: var(--titillium);
+  background-color: var(--dark-grey);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.submissionFormSubmitBtn:hover {
+  border:1px solid var(--white);
+  color: var(--light-grey);
+}
+.submissionFormSubmitBtn:active {
+  border:1px solid var(--white);
+  color: var(--black);
+  background-color: var(--light-grey);
+}
+.submissionFormSubmitBtnHide {
+  display: none;
+}
+
+
+/* Footer */
+footer {
+  background-color: var(--light-grey);
+  padding:2.5% 5%;
+}
+.footerFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footerList {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footerListItem {
+  list-style: none;
+}
+.copyright {
+  width:fit-content;
+  margin:0 auto;
+  margin-top:25px;
+  font-size: 0.75rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .makePredictionForm {
+  width:400px;
+  margin:0 auto;
+  padding:25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.formOptionCont {
+  border-top:2px solid black;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  width:fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:5px;
+  padding:10px;
+  height:5px;
+  margin-bottom: 35px;
+}
+.makePredictionForm .p2Cont,
+.makePredictionForm .p4Cont,
+.makePredictionForm .p6Cont,
+.makePredictionForm .p8Cont,
+.makePredictionForm .p10Cont {
+  align-self: flex-end;
+}
+.formOptionCont label {
+  font-weight: 600;
+}
+.formSelectCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+.colorBox {
+  width:5px;
+  height:35px;
+  border: 5px solid var(--black);
+}
+.dropdownElement {
+  border: none;
+  background-color: #ffffff00;
+  font-size: 1.25rem;
+  width:auto;
+  font-family: var(--titillium);
+} */
+
+/* Standings window */
+
+
+/* Global Standings table */ 
+/* .natTableFlag {
+  width:25px;
+  height:25px;
+}
+.globalStandingsTable.window {
+  background-color: var(--trans-white);
+  width:75%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.tHeader {
+  padding:5px;
+  background-color: var(--dark-grey);
+  color: var(--white);
+}
+.tHeaderNarrow {
+  display: none;
+}
+.tPos,
+.tFlag,
+.tUser,
+.tPoints {
+  text-align: center;
+  padding:5px;
+}
+.tPoints {
+  font-weight: 600;
+}
+
+/* Home page middle section media queries */
+/* @media screen and (max-width:1100px) {
+  .makePredictionForm {
+    width:325px;
+    margin-bottom: 25px;
+  }
+  .tHeaderNarrow {
+    display: block;
+  }
+  .tHeaderWide {
+    display: none;
+  }
+}
+@media screen and (max-width:767px) {
+  .homeMiddleSection {
+    flex-direction: column;
+  }
+  .makePredictionWindow {
+    width: 98%;
+    margin: 15px auto;
+  }
+  .standingsWindow {
+    width: 98%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width:400px) {
+  .makePredictionHeader {
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap:25px;
+  }
+  .MPFlag {
+    display: none;
+  }
+} */
+
+/* Home page bottom section - last round stats */
+/* .prevRoundStats {
+  background-color: var(--dark-grey);
+  width: 99%;
+  border-radius: 0 25px 25px 0;
+  box-shadow: 5px 5px 15px var(--white);
+  padding:25px 0;
+  margin-top:15px;
+}
+.prevRoundStats h3 {
+  color: var(--white);
+  text-align: center;
+}
+.prevRoundStatsFlexbox {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:250px;
+  margin:25px 0;
+}
+.prevRaceResultCont {
+  border:1px solid var(--white);
+  background-color: var(--white);
+  border-radius: 25px;
+  width:25%;
+}
+.prevRaceResultTitle {
+  text-align: center;
+  padding:30px;
+}
+.prevRaceResultTitle img {
+  width:25px;
+  height:25px;
+}
+.prevRaceResult {
+  width:100%;
+  margin:0 auto;
+}
+.prevResultItem {
+  position: relative;
+  text-align: center;
+  list-style: none;
+  padding:15px;
+  text-align: center;
+  counter-increment: positionCounter;
+}
+.prevResultItem::before {
+  content: counter(positionCounter) ".";
+  counter-increment: li;
+  content: counter(positionCounter);
+  font-size: 3rem;
+  color: var(--dark-grey);
+  font-style: italic;
+  font-weight: 900;
+  opacity: 0.25;
+  position: absolute;
+  top:-5px;
+  left:5px;
+  display: block;
+  width:25px;
+  height:25px;
+}
+.prevResultItem:nth-child(1),
+.prevResultItem:nth-child(3),
+.prevResultItem:nth-child(5),
+.prevResultItem:nth-child(7),
+.prevResultItem:nth-child(9) {
+  background-color: var(--light-grey);
+}
+.driverNum {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--dark-grey);
+  padding: 0 20px;
+}
+.driverFN {
+  font-size: 0.8rem;
+  padding: 0 10px;
+}
+.driverSN {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.prevRoundStatsBox {
+  background-color: var(--white);
+  border-radius: 25px;
+}
+.pointsScored,
+.topPointsScored {
+  background-color: var(--light-grey);
+}
+.pointsScored,
+.topPointsScored,
+.avgPointsScored {
+  padding:65px;
+  text-align: center;
+}
+.pointsScored {
+  border-radius: 25px 25px 0 0;
+}
+.topPointsScored {
+  border-radius: 0 0 25px 25px;
+}
+.pointsBig {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding-top:25px;
+}  */
