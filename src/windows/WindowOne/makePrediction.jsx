@@ -1,7 +1,6 @@
 import React from "react";
 import { StaticRaceInformation, DynamicRaceInformation } from "../../hooks/raceInfoErgast";
 import { driverInfo } from "../../data/driverInfo";
-import { PredictionForm } from "../../components/forms";
 import "../../assets/global.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
