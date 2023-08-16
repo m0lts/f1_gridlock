@@ -1,5 +1,7 @@
 import { sql } from '@vercel/postgres';
 
+// WILL HAVE TO EDIT WHEN PROPER QUERIES ARE NEEDED
+
 export default async function handler(request, response) {
   try {
     const username = request.query.username;

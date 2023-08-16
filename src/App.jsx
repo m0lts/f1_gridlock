@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import Header from './components/header';
-import GrandPrix from './windows/Hero/grandPrix';
-import WindowOne from './windows/WindowOne/windowOne';
-import WindowTwo from './windows/WindowTwo/windowTwo';
-import WindowThree from './windows/WindowThree/windowThree';
-import WindowFour from './windows/WindowFour/windowFour';
+import Body from './components/body';
 import Footer from './components/footer';
+import LogIn from './pages/logIn';
+import SignUp from './pages/signUp';
+import { Route, Routes } from 'react-router-dom';
 import './assets/global.css';
 
 
@@ -14,15 +13,11 @@ function App() {
     <>
       <Header />
       <main className='appBackground'>
-        <GrandPrix />
-        <section className="sectionOne">
-          <WindowOne />
-          <WindowTwo />
-        </section>
-        {/* <section className="sectionTwo">
-          <WindowThree />
-          <WindowFour />
-        </section> */}
+        <Routes>
+            <Route path='/' element={<Body />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<LogIn />} />
+        </Routes>
       </main>
       <Footer />
     </>
