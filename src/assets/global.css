@@ -513,6 +513,15 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
 }
 
 
+
+/* SING UP FORM */
+
+.signUpForm {
+  color:white;
+}
+
+
+
 /* Footer */
 footer {
   background-color: var(--light-grey);
