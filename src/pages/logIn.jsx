@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 export default function LogIn() {
+    // const [loginSuccess, setLoginSuccess] = useState(false);
+    const navigate = useNavigate();
 
     const { register, 
         control, 
@@ -19,16 +24,22 @@ export default function LogIn() {
             });
         
             if (response.ok) {
-                const responseData = await response.json(); // Parse response JSON
-                const user = responseData.user; // Extract user data from response
+                const responseData = await response.json();
+                const userEmail = responseData.userEmail;
+                const userPassword = responseData.userPassword;
+                const userFirstName = responseData.userFirstName;
+                const userSecondName = responseData.userSecondName;
+                const userUsername = responseData.userUsername;
         
-                // Use the user data as needed
-                console.log('Password:', user);
-        
-                alert('Login successful.'); // For example
+                if (userEmail && userPassword) {
+                    console.log('Login successful');
+                    localStorage.setItem('Username', userUsername)
+                    navigate('/');
+                  }
               } else {
-                // Handle submission error
-                alert('Submission has failed.');
+                const responseData = await response.json();
+                const errorMessage = responseData.message;
+                console.log(errorMessage);
               }
         } catch (error) {
             console.error('Error submitting form:', error);

@@ -101,22 +101,5 @@ export default function SignUp() {
 
         </form>
 
-        // <form action="" className="signUpForm">
-        //     <label htmlFor="firstName">First Name</label>
-        //     <input type="text" id="firstName" name="firstName" />
-        //     <label htmlFor="secondName">Second Name</label>
-        //     <input type="text" id="secondName" name="secondName" />
-        //     <label htmlFor="username">Username</label>
-        //     <input type="text" id="username" name="username" />
-        //     <label htmlFor="email">Email Address</label>
-        //     <input type="text" id="email" name="email" />
-        //     <label htmlFor="phoneNumber">Phone Number</label>
-        //     <input type="text" id="phoneNumber" name="phoneNumber" />
-        //     <label htmlFor="password">Password</label>
-        //     <input type="text" id="password" name="password" />
-        //     <label htmlFor="passwordVerify">Re-enter Password</label>
-        //     <input type="text" id="passwordVerify" name="passwordVerify" />
-        //     <input type="button" value="submit" />
-        // </form>
     )
 }

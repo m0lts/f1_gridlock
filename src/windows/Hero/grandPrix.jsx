@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StaticRaceInformation, DynamicRaceInformation } from "../../hooks/raceInfoErgast";
 import "../../assets/global.css";
-import BelgianFlag from "../../assets/interface/media/flags/belgium_flag.svg";
-import BelgianCircuit from "../../assets/interface/media/circuits/belgium_track.png";
+import { useUsername } from "../../hooks/usernameHook";
 
 export default function GrandPrix() {
     const { round, 
@@ -14,6 +13,8 @@ export default function GrandPrix() {
 
     const { raceStartTime } = DynamicRaceInformation();
 
+    const username = useUsername();
+
     return (
         <section className="nextRaceBanner">
             <div className="heroTop">
@@ -23,6 +24,11 @@ export default function GrandPrix() {
             <div className="bannerHeroMain">
                 <div className="heroMainLeft">
                     <div>
+                    {username ? (
+                        <p>Welcome, {username}!</p>
+                    ) : (
+                        <p>You are not logged in.</p>
+                    )}
                         <h1 className="raceCountry">{circuitName}</h1>
                         <h2 className="grandPrixName">{grandPrixName}</h2>
                         

@@ -10,7 +10,6 @@ export default function MakePrediction() {
 
     const [positionCounter, setPositionCounter] = useState(1);
 
-
     // GET API RACE DATA
     const { grandPrixName } = StaticRaceInformation();
     const { qualifyingStartTime } = DynamicRaceInformation();
@@ -40,6 +39,8 @@ export default function MakePrediction() {
         
         const formData = new FormData(event.target);
         const queryParams = new URLSearchParams(formData);
+        const username = localStorage.getItem('Username');
+        queryParams.append('username', username);
     
         const url = `/api/add-prediction?${queryParams.toString()}`;
 
@@ -48,9 +49,15 @@ export default function MakePrediction() {
         if (response.ok) {
             console.log("SUCCESS");
         } else {
-          console.log("ERROR");
-        }
-      };
+            try {
+            const errorData = await response.json(); // Parse the error response
+            const errorMessage = errorData.error; // Extract the error message
+      
+            console.log("ERROR:", errorMessage);
+          } catch (error) {
+            console.log("An unknown error occurred.");
+          }
+      }};
 
     
     return (

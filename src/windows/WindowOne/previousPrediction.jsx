@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useUsername } from '../../hooks/usernameHook';
 
 import '../../assets/global.css';
 
 export default function PreviousPrediction({ title }) {
   const [predictions, setPredictions] = useState([]);
-  const username = 'TOM-Test'; // Update this with the actual username
+  const username = localStorage.getItem('Username');
 
 //   fetch data from POSTGRES vercel database by calling api endpoint query-prediction.
 // when you get a chance, change it so that values are passed to the query so more specific data can be fetched i.e. race round etc.

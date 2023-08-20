@@ -1,10 +1,11 @@
 import { sql } from '@vercel/postgres';
  
 export default async function handler(request, response) {
+
   try {
     const queryParams = request.query;
 
-    const username = "TOM-Test";
+    const username = queryParams.username;
     const p1 = queryParams.P1;
     const p2 = queryParams.P2;
     const p3 = queryParams.P3;
@@ -22,7 +23,7 @@ export default async function handler(request, response) {
   
     return response.status(200).json({ message: "Prediction submitted successfully." });
 } catch (error) {
-    return response.status(500).json({ error });
+    return response.status(500).json({ error: error.message });
   }
 
 }

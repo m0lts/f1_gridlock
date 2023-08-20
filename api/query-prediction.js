@@ -3,8 +3,11 @@ import { sql } from '@vercel/postgres';
 // WILL HAVE TO EDIT WHEN PROPER QUERIES ARE NEEDED
 
 export default async function handler(request, response) {
+
   try {
-    const username = request.query.username;
+    const queryParams = request.query;
+
+    const username = queryParams.username;
 
     if (!username) throw new Error('Username is required');
 
