@@ -64,7 +64,9 @@ h4 {
   border: 1px solid var(--white);
   opacity: 1;
 }
-
+.hideSignUpBtn {
+  display: none;
+}
 .signUpBtn {
   background-color: var(--light-grey);
   border: 1px solid var(--light-grey);
@@ -114,9 +116,9 @@ header {
 }
 .headerRightFlex {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  width:200px;
+  gap:25px;
 }
 
 .appBackground {
@@ -226,6 +228,7 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
   background-color: var(--white);
   width:45%;
   height:auto;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -330,9 +333,8 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
 }
 .predictionsClosedWindowShow {
   display: block;
-  height:500px;
+  height:100%;
   border-radius: 0 0 25px 25px;
-  background-color: #00BF36;
 }
 .predictionsClosed {
   display: none;
@@ -347,8 +349,8 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
   color: var(--white);
   border: 1px solid var(--light-grey);
   background-color: var(--dark-grey);
-  height:100%;
   border-radius: 0 0 25px 25px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

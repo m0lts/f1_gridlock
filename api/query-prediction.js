@@ -6,7 +6,6 @@ export default async function handler(request, response) {
 
   try {
     const queryParams = request.query;
-
     const username = queryParams.username;
 
     if (!username) throw new Error('Username is required');

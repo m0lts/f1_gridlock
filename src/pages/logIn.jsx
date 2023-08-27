@@ -35,6 +35,7 @@ export default function LogIn() {
                     console.log('Login successful');
                     localStorage.setItem('Username', userUsername)
                     navigate('/');
+                    window.location.reload();
                   }
               } else {
                 const responseData = await response.json();

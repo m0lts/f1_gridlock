@@ -73,3 +73,145 @@ export const circuitFlags = {
     "Las Vegas Grand Prix": "/interface/media/circuits/lasvegas_track.png",
     "Abu Dhabi Grand Prix": "/interface/media/circuits/abudhabi_track.png"
   };
+
+  export const circuitInfo = {
+    "Bahrain": {
+      'traction': 4,
+      'track evolution': 4,
+      'braking': 4,
+      'asphalt abrasion': 5,
+      'tyre stress': 3,
+      'downforce': 3
+    },
+    "Saudi Arabia": {
+      'traction': 2,
+      'track evolution': 4,
+      'braking': 2,
+      'asphalt abrasion': 2,
+      'tyre stress': 3,
+      'downforce': 2
+    },
+    "Australia": {
+      'traction': 2,
+      'track evolution': 4,
+      'braking': 2,
+      'asphalt abrasion': 2,
+      'tyre stress': 3,
+      'downforce': 3
+    },
+    "Azerbaijan": {
+      'traction': 5,
+      'track evolution': 5,
+      'braking': 4,
+      'asphalt abrasion': 1,
+      'tyre stress': 3,
+      'downforce': 1
+    },
+    "Miami": {
+      'traction': 3,
+      'track evolution': 5,
+      'braking': 3,
+      'asphalt abrasion': 2,
+      'tyre stress': 3,
+      'downforce': 2
+    },
+    "Imola": {
+      'traction': 2,
+      'track evolution': 3,
+      'braking': 3,
+      'asphalt abrasion': 3,
+      'tyre stress': 3,
+      'downforce': 3
+    },
+    "Monaco": {
+      'traction': 5,
+      'track evolution': 5,
+      'braking': 2,
+      'asphalt abrasion': 1,
+      'tyre stress': 1,
+      'downforce': 5
+    },
+    "Spain": {
+      'traction': 3,
+      'track evolution': 3,
+      'braking': 3,
+      'asphalt abrasion': 4,
+      'tyre stress': 5,
+      'downforce': 4
+    },
+    "Canada": {
+      'traction': 5,
+      'track evolution': 5,
+      'braking': 5,
+      'asphalt abrasion': 2,
+      'tyre stress': 3,
+      'downforce': 1
+    },
+    "Austria": {
+      'traction': 2,
+      'track evolution': 3,
+      'braking': 3,
+      'asphalt abrasion': 4,
+      'tyre stress': 3,
+      'downforce': 3
+    },
+    "Great Britain": {
+      'traction': 3,
+      'track evolution': 2,
+      'braking': 2,
+      'asphalt abrasion': 3,
+      'tyre stress': 5,
+      'downforce': 4
+    },
+    "Hungary": {
+      'traction': 4,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 2,
+      'tyre stress': 3,
+      'downforce': 5
+    },
+    "Belgium": {
+      'traction': 4,
+      'track evolution': 3,
+      'braking': 4,
+      'asphalt abrasion': 4,
+      'tyre stress': 5,
+      'downforce': 2
+    },
+    "Monza": {
+
+    },
+    "Netherlands": {
+      'traction': 4,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 3,
+      'tyre stress': 5,
+      'downforce': 4
+    },
+    "Singapore": {
+
+    },
+    "Japan": {
+
+    },
+    "Qatar": {
+
+    },
+    "Mexico": {
+      
+    },
+    "Brazil": {
+
+    },
+    "United States": {
+
+    },
+    "Las Vegas": {
+
+    },
+    "Abu Dhabi": {
+
+    }
+  };
