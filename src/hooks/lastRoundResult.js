@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 
 export function LastRoundResult() {
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState({
+        position: [],
+        driverNumber: [],
+        lastNames: [],
+        team: [],
+    });
 
     useEffect(() => {
         async function fetchPreviousResultData() {
@@ -11,15 +16,18 @@ export function LastRoundResult() {
                 const data = await response.json();
                 const deconstructedAPI = data.MRData.RaceTable.Races[0].Results;
                 // SET RESULT
-                const position = deconstructedAPI.map(item => item.positionText);
-                const driverNumber = deconstructedAPI.map(item => item.Driver.permanentNumber);
+                const positions = deconstructedAPI.map(item => item.positionText);
+                const driverNumbers = deconstructedAPI.map(item => item.Driver.permanentNumber);
                 const lastNames = deconstructedAPI.map(item => item.Driver.familyName);
-                const team = deconstructedAPI.map(item => item.Constructor.name);
-                const time = deconstructedAPI.map(item => item.Time.time);
+                const teams = deconstructedAPI.map(item => item.Constructor.name);
 
-                console.log(deconstructedAPI);
                 // Set the result state
-                setResult(position, driverNumber, lastNames, team, time);
+                setResult({
+                    position: positions,
+                    driverNumber: driverNumbers,
+                    lastNames: lastNames,
+                    team: teams,
+                });
 
             } catch (error) {
                 console.error(error);

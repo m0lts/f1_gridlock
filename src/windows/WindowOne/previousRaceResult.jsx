@@ -10,14 +10,14 @@ export default function PreviousRaceResult({...props}) {
     return (
         <>
         <h1>{props.title}</h1>
-        <ul>
-            {/* map over result array and print to component */}
-            {result && result.map((driver, index) => (
-            <li key={index}>
-                {driver.position} - {driver.driverNumber} - {driver.lastNames} - {driver.team} - {driver.laps} - {driver.time}
-            </li>
-            ))}
-        </ul>
+            <ul>
+                {/* Render last round result */}
+                {result.position.map((position, index) => (
+                    <li key={index}>
+                        {position} - {result.driverNumber[index]} - {result.lastNames[index]} - {result.team[index]}
+                    </li>
+                ))}
+            </ul>
         </>
     )
 }
