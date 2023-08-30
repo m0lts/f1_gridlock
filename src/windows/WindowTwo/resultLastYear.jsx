@@ -1,6 +1,6 @@
 import React from "react";
 import '../../assets/global.css';
-import { LastYearResult } from "../../hooks/lastYearResult";
+import { LastYearResult } from "../../hooks/ergastAPIQueries";
 
 export default function ResultLastYear({...props}) {
 

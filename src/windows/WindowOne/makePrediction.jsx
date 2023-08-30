@@ -1,5 +1,6 @@
 import React from "react";
-import { StaticRaceInformation, DynamicRaceInformation } from "../../hooks/raceInfoErgast";
+import { NextRaceInformation } from "../../hooks/ergastAPIQueries";
+import { CountdownFunction } from "../../utils/countdownFunction";
 import { driverInfo } from "../../data/driverInfo";
 import "../../assets/global.css";
 import { useState, useEffect } from "react";
@@ -11,8 +12,8 @@ export default function MakePrediction() {
     const [positionCounter, setPositionCounter] = useState(1);
 
     // GET API RACE DATA
-    const { grandPrixName } = StaticRaceInformation();
-    const { qualifyingStartTime } = DynamicRaceInformation();
+    const { grandPrixName } = NextRaceInformation();
+    const { qualifyingCountdown } = CountdownFunction();
 
     const driverDetails = driverInfo;
 
@@ -62,15 +63,15 @@ export default function MakePrediction() {
     
     return (
         <div className='makePredictionWindow'>
-            <div className={qualifyingStartTime === "00:00:00:00" ? "makePredictionInfoClosed" : "makePredictionInfo"}>
-                <FontAwesomeIcon className={qualifyingStartTime === "00:00:00:00" ? "showLock" : "hideLock"} icon={faLock} />
+            <div className={qualifyingCountdown === "00:00:00:00" ? "makePredictionInfoClosed" : "makePredictionInfo"}>
+                <FontAwesomeIcon className={qualifyingCountdown === "00:00:00:00" ? "showLock" : "hideLock"} icon={faLock} />
                 <h6 className="qualifyingCountdown">
-                    {qualifyingStartTime === "00:00:00:00" ? "Predictions are Closed" : `Predictions close in: ${qualifyingStartTime}`}
+                    {qualifyingCountdown === "00:00:00:00" ? "Predictions are Closed" : `Predictions close in: ${qualifyingCountdown}`}
                 </h6>
                 <p className="infoText">
-                    {qualifyingStartTime === "00:00:00:00" ? "Your prediction from last week has been submitted." : `Make your prediction for the ${grandPrixName} below by selecting your Top 10 drivers.`}                </p>
+                    {qualifyingCountdown === "00:00:00:00" ? "Your prediction from last week has been submitted." : `Make your prediction for the ${grandPrixName} below by selecting your Top 10 drivers.`}                </p>
             </div>
-            <div className={qualifyingStartTime === "00:00:00:00" ? 'predictionsClosed' : ''}>
+            <div className={qualifyingCountdown === "00:00:00:00" ? 'predictionsClosed' : ''}>
                 <div className="unpickedDriversCont">
                     <h5>Select Drivers:</h5>
                     <ul className="unpickedDrivers">

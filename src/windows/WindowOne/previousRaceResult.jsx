@@ -1,11 +1,11 @@
 import React from "react";
 import "../../assets/global.css";
-import { LastRoundResult } from "../../hooks/lastRoundResult";
+import { PreviousRaceInformation } from "../../hooks/ergastAPIQueries";
 
 export default function PreviousRaceResult({...props}) {
 
     // Retrieve last round result from LastRoundResult hook
-    const result = LastRoundResult();
+    const result = PreviousRaceInformation();
 
     return (
         <>

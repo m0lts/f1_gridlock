@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { StaticRaceInformation, DynamicRaceInformation } from "../../hooks/raceInfoErgast";
+import { NextRaceInformation } from "../../hooks/ergastAPIQueries";
+import { CountdownFunction } from "../../utils/countdownFunction";
 import "../../assets/global.css";
 import { useUsername } from "../../hooks/usernameHook";
 
 export default function GrandPrix() {
+
+    // Get next race information from NextRaceInformation hook located in ergastAPIQueries.jsx
     const { round, 
             flag,
             circuitName,
             circuitTrackImg,
             raceName,
-            grandPrixName } = StaticRaceInformation();
+            grandPrixName } = NextRaceInformation();
 
-    const { raceStartTime } = DynamicRaceInformation();
+    // Get countdown timer to race start from CountdownHook hook located in countdownFunctions.jsx
+    const { raceCountdown } = CountdownFunction();
 
+    // Get username from useUsername hook located in usernameHook.jsx
     const username = useUsername();
 
     return (
@@ -35,7 +40,7 @@ export default function GrandPrix() {
                     </div>
                     <div className="timerBox">
                         <h3 className="timerTitle">Lights Out:</h3>
-                        <h1 className="timer">{raceStartTime}</h1>
+                        <h1 className="timer">{raceCountdown}</h1>
                     </div>
                 </div>
                 <div className="heroMainRight">

@@ -3,7 +3,7 @@ import React from "react";
 import '../../assets/global.css';
 import CircuitInfo from './circuitInfo';
 import ResultLastYear from './resultLastYear';
-import WeatherForecast from './weather';
+import WeatherComponent from './weather';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft, faCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +11,7 @@ export default function WindowTwo() {
     // ARRAY CONTAINING COMPONENTS TO BE DISPLAYED IN WINDOW ONE
     const components = [
         <CircuitInfo title="Circuit Information" />,
-        <WeatherForecast title="Weather Forecast" />,
+        <WeatherComponent title="Weather Forecast" />,
         <ResultLastYear title="Result Last Year" />
     ]
 
