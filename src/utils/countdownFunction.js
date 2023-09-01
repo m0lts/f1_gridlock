@@ -15,13 +15,8 @@ export function CountdownFunction() {
 
     // Countdown function
     const createCountdown = (time, date, setState) => {
-        // Edit time string to account for BST
-        let raceTimeString = time.split("");
-        raceTimeString.pop();
-        raceTimeString[1]++;
-        const returnedRaceTime = raceTimeString.join("");
         // Concatenate date and time strings
-        const raceCountdownDate = new Date(`${date} ${returnedRaceTime}`);
+        const raceCountdownDate = new Date(`${date} ${time}`);
         // Calculate distance
         let distance, days, hours, minutes, seconds;
         const now = new Date().getTime();
