@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { circuitNames, circuitFlags, circuitTracks } from "../data/circuitInfo";
+import { set } from "react-hook-form";
 
 // **********************************************************************************************************************
 // **********************************************************************************************************************
@@ -165,8 +166,9 @@ export function PreviousRaceInformation() {
                 // CALL API
                 const response = await fetch('https://ergast.com/api/f1/current/last/results.json');
                 const data = await response.json();
-                const deconstructedAPI = data.MRData.RaceTable.Races[0].Results;
+
                 // SET RESULT
+                const deconstructedAPI = data.MRData.RaceTable.Races[0].Results;
                 const positions = deconstructedAPI.map(item => item.positionText);
                 const driverNumbers = deconstructedAPI.map(item => item.Driver.permanentNumber);
                 const lastNames = deconstructedAPI.map(item => item.Driver.familyName);
@@ -189,6 +191,46 @@ export function PreviousRaceInformation() {
     }, []);
 
     return result
+}
+
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+
+
+
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+
+// Get previous race weekend round number
+export function PreviousRaceRound() {
+    const [round, setRound] = useState('');
+
+    useEffect(() => {
+        async function fetchPreviousRaceRound() {
+            try {
+                // CALL API
+                const response = await fetch('https://ergast.com/api/f1/current/last/results.json');
+                const data = await response.json();
+
+                // SET ROUND
+                const roundNumber = data.MRData.RaceTable.Races[0].round;
+                setRound(roundNumber);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchPreviousRaceRound();
+        
+    }, []);
+
+    return {round}
 }
 
 // **********************************************************************************************************************
@@ -254,6 +296,55 @@ export function LastYearResult() {
     }, [circuitID]);
 
     return resultLastYear;
+}
+
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+
+
+
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+// **********************************************************************************************************************
+
+// Get driver information
+export function Drivers() {
+
+    // Define states
+    const [drivers, setDrivers] = useState([]);
+
+    // Get the result from last year using circuit ID
+    useEffect(() => {
+        async function fetchDrivers() {
+            try {
+                // Call API to retrieve result
+                const response = await fetch(`https://ergast.com/api/f1/current/drivers.json`);
+                const data = await response.json();
+                const deconstructedAPI = data.MRData.DriverTable.Drivers;
+                
+                const allDrivers = deconstructedAPI.map(driver => ({
+                    firstName: driver.givenName,
+                    lastName: driver.familyName,
+                    number: driver.permanentNumber
+                }));
+    
+                // Set the result state
+                setDrivers(allDrivers);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchDrivers();
+        
+    }, []);
+
+    return drivers;
 }
 
 // **********************************************************************************************************************

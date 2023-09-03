@@ -12,10 +12,9 @@ export default function Body() {
             <WindowOne />
             <WindowTwo />
             </section>
-            {/* <section className="sectionTwo">
+            <section className="sectionTwo">
             <WindowThree />
-            <WindowFour />
-            </section> */}
+            </section>
         </>
     )
 }

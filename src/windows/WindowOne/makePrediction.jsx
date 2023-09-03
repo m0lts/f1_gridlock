@@ -15,9 +15,35 @@ export default function MakePrediction() {
     const { grandPrixName } = NextRaceInformation();
     const { qualifyingCountdown } = CountdownFunction();
 
-    const driverDetails = driverInfo;
+    // Initialize unpickedDrivers as an empty array
+    const [unpickedDrivers, setUnpickedDrivers] = useState([]);
 
-    const [unpickedDrivers, setUnpickedDrivers] = useState(driverDetails);
+    // Get the drivers details from the Ergast API
+    useEffect(() => {
+        async function fetchDrivers() {
+            try {
+                // Call API to retrieve result
+                const response = await fetch(`https://ergast.com/api/f1/current/drivers.json`);
+                const data = await response.json();
+                const deconstructedAPI = data.MRData.DriverTable.Drivers;
+                
+                const allDrivers = deconstructedAPI.map(driver => ({
+                    firstName: driver.givenName,
+                    lastName: driver.familyName,
+                    number: driver.permanentNumber
+                }));
+    
+                // Set the result state
+                setUnpickedDrivers(allDrivers);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchDrivers();
+        
+    }, []);
+
     const [pickedDrivers, setPickedDrivers] = useState([]);
 
     const handlePickDriver = (driver) => {

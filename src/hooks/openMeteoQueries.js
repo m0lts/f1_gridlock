@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NextRaceInformation } from "./ergastAPIQueries";
+import { set } from "react-hook-form";
 
 // Edit time string to account for BST
 // REMOVE THIS FUNCTION WHEN BST ENDS
@@ -21,6 +22,15 @@ export function WeatherForecast() {
     const raceDateAndTime = `${raceDate}T${cleanRaceTime}`;
     const raceFinishDateAndTime = `${raceDate}T${editTime(cleanRaceTime)}`;
 
+    // Set states for weather forecast
+    const [qualiPrecipitation, setQualiPrecipitation] = useState('');
+    const [qualiCloudcover, setQualiCloudcover] = useState('');
+    const [raceStartPrecipitation, setRaceStartPrecipitation] = useState('');
+    const [raceStartCloudcover, setRaceStartCloudcover] = useState('');
+    const [raceFinishPrecipitation, setRaceFinishPrecipitation] = useState('');
+    const [raceFinishCloudcover, setRaceFinishCloudcover] = useState('');
+
+    // Get weather forecast
     useEffect(() => {
         async function getWeatherForecast() {
             try {
@@ -44,9 +54,12 @@ export function WeatherForecast() {
                         const raceStartCloudcoverValue = data.hourly.cloudcover[raceStartTimeIndex];
                         const raceFinishPrecipitationValue = data.hourly.precipitation_probability[raceFinishTimeIndex];
                         const raceFinishCloudcoverValue = data.hourly.cloudcover[raceFinishTimeIndex];
-                        console.log(`Qualifying precipitation chance at ${qualiDateAndTime}: ${qualiPrecipitationValue}%. Cloudcover: ${qualiCloudcoverValue}%.`);
-                        console.log(`Race Start precipitation chance at ${raceDateAndTime}: ${raceStartPrecipitationValue}%. Cloudcover: ${raceStartCloudcoverValue}%.`);
-                        console.log(`Race End precipitation chance at ${raceFinishDateAndTime}: ${raceFinishPrecipitationValue}%. Cloudcover: ${raceFinishCloudcoverValue}%.`);
+                        setQualiPrecipitation(qualiPrecipitationValue);
+                        setQualiCloudcover(qualiCloudcoverValue);
+                        setRaceStartPrecipitation(raceStartPrecipitationValue);
+                        setRaceStartCloudcover(raceStartCloudcoverValue);
+                        setRaceFinishPrecipitation(raceFinishPrecipitationValue);
+                        setRaceFinishCloudcover(raceFinishCloudcoverValue);
                       } else {
                         console.log(`Desired time (${qualiDateAndTime} or ${raceDateAndTime}) not found in the data.`);
                       }
@@ -59,4 +72,13 @@ export function WeatherForecast() {
         getWeatherForecast();
 
     }, [longitude, latitude]);
+
+    return {
+        qualiPrecipitation,
+        qualiCloudcover,
+        raceStartPrecipitation,
+        raceStartCloudcover,
+        raceFinishPrecipitation,
+        raceFinishCloudcover
+    }
 }

@@ -3,7 +3,6 @@ import '../../assets/global.css';
 import MakePrediction from "./makePrediction.jsx";
 import PreviousPrediction from "./previousPrediction";
 import PreviousRaceResult from "./previousRaceResult";
-import MostPopularPrediction from "./mostPopularPrediction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft, faCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,9 +11,8 @@ export default function WindowOne() {
     // ARRAY CONTAINING COMPONENTS TO BE DISPLAYED IN WINDOW ONE
     const components = [
         <MakePrediction title="Make Prediction" />,
-        <PreviousPrediction title="Your Prediction Last Round" />,
-        <PreviousRaceResult title="Last Round's Result" />,
-        <MostPopularPrediction title="Most Popular Prediction" />
+        <PreviousPrediction title="Your Prediction Last Race" />,
+        <PreviousRaceResult title="Last Round's Result" />
     ]
 
     const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
@@ -62,13 +60,6 @@ export default function WindowOne() {
                         </li>
                         <li className="activeWindowDot">
                             {currentComponentIndex === 2 ? (
-                                    <FontAwesomeIcon icon={faCircleDot} className="faCircleDot"/>
-                                ) : (
-                                    <FontAwesomeIcon icon={faCircle} className="faCircle" />
-                                )}
-                        </li>
-                        <li className="activeWindowDot">
-                            {currentComponentIndex === 3 ? (
                                     <FontAwesomeIcon icon={faCircleDot} className="faCircleDot"/>
                                 ) : (
                                     <FontAwesomeIcon icon={faCircle} className="faCircle" />
