@@ -180,7 +180,12 @@ export const circuitFlags = {
       'downforce': 2
     },
     "Monza": {
-
+      'traction': 3,
+      'track evolution': 4,
+      'braking': 4,
+      'asphalt abrasion': 3,
+      'tyre stress': 3,
+      'downforce': 1
     },
     "Netherlands": {
       'traction': 4,

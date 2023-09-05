@@ -7,8 +7,12 @@ export default function CalculatePointsGained() {
     // Get username from localstorage
     const username = localStorage.getItem('Username');
   
+    // Get round from ergast API to query previous prediction with
     const { round } = PreviousRaceRound();
+
+    // Get actual race result from previous round and reduce to 10 drivers
     const result = PreviousRaceInformation();
+    const resultTop10 = result.lastNames.slice(0, 10);
   
   //   fetch data from POSTGRES vercel database by calling api endpoint query-prediction.
   // when you get a chance, change it so that values are passed to the query so more specific data can be fetched i.e. race round etc.
@@ -34,6 +38,27 @@ export default function CalculatePointsGained() {
   
       fetchData();
     }, [round]);
+
+    // Calculate points gained
+    let points = 0;
+
+    if (predictions.join() === resultTop10.join()) {
+        points += 10;
+    }
+
+    for (let i = 0; i < predictions.length; i++) {
+        if (predictions[i] === resultTop10[i]) {
+            points += 2;
+        }
+    }
+
+    for (let j = 0; j < predictions.length; j++) {
+        for (let l = 0; l < resultTop10.length; l++) {
+            if (predictions[j] === resultTop10[l]) {
+                points += 1;
+            }
+        }
+    }
   
     return (
         <div>
@@ -53,12 +78,13 @@ export default function CalculatePointsGained() {
             <h1>Result</h1>
             <ul>
                                 {/* Render last round result */}
-                                {result.position.map((position, index) => (
+                                {resultTop10.map((position, index) => (
                     <li key={index}>
                         {result.lastNames[index]}
                     </li>
                 ))}
             </ul>
+            <h1>{points}</h1>
         </div>
 
 
