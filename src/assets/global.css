@@ -18,7 +18,7 @@
   --light-grey: #EBEBEB;
   --red: #ff2929;
   --green: #00BF36;
-  --trans-white:#ffffffb2;
+  --trans-white:#ffffff4e;
   --titillium: "Titillium Web", sans-serif;
 }
 
@@ -54,7 +54,7 @@ h4 {
   color:var(--white);
   border-radius: 5px;
   cursor: pointer;
-  padding:7px;
+  padding:10px;
 }
 .btn:hover,
 .btn:active {
@@ -68,7 +68,7 @@ h4 {
   display: none;
 }
 .signUpBtn {
-  background-color: var(--light-grey);
+  background-color: var(--red);
   border: 1px solid var(--light-grey);
   color:var(--black);
   font-size: 1rem;
@@ -93,6 +93,10 @@ h4 {
   margin-top:75px;
   font-size: 1.1rem;
 }
+.linkBtns {
+  text-decoration: none;
+  color: var(--white);
+}
 
 
 /* ******STYLING FOR ALL COMPONENTS CONSTANTLY ON PAGE****** */
@@ -108,7 +112,7 @@ header {
   width:100%;
   margin:0 auto;
   padding:5px 5%;
-  background-color: var(--red);
+  background-color: var(--light-grey);
 }
 .logoImg {
   width:75px;
@@ -122,7 +126,7 @@ header {
 }
 
 .appBackground {
-  background-color: var(--black);
+  background-color: var(--dark-grey);
   border: 1px solid var(--black);
 }
 .windowOne,
@@ -153,6 +157,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding:25px 0;
+  height: 100%;
 }
 .heroMainLeft {
   width:50%;
@@ -182,13 +187,16 @@ header {
   align-items: center;
   flex-direction: column;
   gap:25px;
-  background-color: var(--dark-grey);
+  background-color: var(--trans-white);
   border-radius: 25px;
   padding: 25px;
 }
 .raceName,
 .grandPrixName {
   font-family: var(--titillium);
+}
+.raceName {
+  text-align: center;
 }
 .circuitImg {
   width:100%;
@@ -205,6 +213,9 @@ header {
 @media screen and (max-width:767px) {
   .heroMainRight {
     display: none;
+  }
+  .timerBox {
+    width:100%;
   }
 }
 
@@ -516,10 +527,57 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
 
 
 
-/* SING UP FORM */
-
+/* SIGN UP FORM */
+.signUpPage {
+  width:50%;
+  margin:50px auto;
+  background-color: var(--trans-white);
+  border-radius: 25px;
+  padding-bottom: 50px;
+}
+.signUpHeading {
+  font-family: var(--titillium);
+  color:var(--white);
+  font-weight: 600;
+  text-align: center;
+  padding:10px;
+}
 .signUpForm {
-  color:white;
+  color:var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:10px;
+  margin-bottom: 50px;
+}
+.formFieldCont {
+  width:50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:5px;
+}
+.inputField {
+  border: none;
+  border-radius: 5px;
+  padding:3px;
+  font-family: var(--titillium);
+  text-align: center;
+  width:150px;
+}
+.inputField.wider {
+  width:200px;
+}
+.errorField {
+  color:var(--red);
+  font-size: 0.8rem;
+}
+.signUpLinkToLogin {
+  border:1px solid red;
+  margin:50px 0;
+  text-align: center;
+  color: var(--white);
 }
 
 

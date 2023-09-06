@@ -1,4 +1,5 @@
 import { Form, useForm } from "react-hook-form"
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
 
@@ -66,40 +67,55 @@ export default function SignUp() {
             }
           };
     return (
+      <section className="signUpPage">
+        <h1 className="signUpHeading">Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}
               control={control}
-              className="signUpForm"
-        >
-            <label htmlFor="firstName">First Name:
-                <input {...register("firstName", { required: true, maxLength: 30 })} />
-                {errors.firstName && <span>This field is required</span>}
-            </label>
-            <label htmlFor="secondName">Surname:
-                <input {...register("secondName", { required: true, maxLength: 30 })} />
-                {errors.secondName && <span>This field is required</span>}
-            </label>
-            <label htmlFor="username">Choose a username:
-                <input {...register("username", { required: true, maxLength: 30 })} />
-                {errors.username && <span>This field is required</span>}
-            </label>
-            <label htmlFor="email">Email Address:
-                <input {...register("email", { required: true })} />
-                {errors.email && <span>This field is required</span>}
-            </label>
-            <label htmlFor="phoneNumber">Phone Number:
-                <input {...register("phoneNumber", { required: true })} />
-            </label>
-            <label htmlFor="password">Password:
-                <input {...register("password", { required: true, maxLength: 30, minLength: 8, validate: validatePassword  })} />
-                {errors.password && <span>{errors.password.message}</span>}
-            </label>
-            <label htmlFor="passwordVerify">Repeat password:
-                <input {...register("passwordVerify", { required: true, maxLength: 30, minLength: 8, validate: validatePasswordMatch  })} />
-                {errors.passwordVerify && <span>{errors.passwordVerify.message}</span>}
-            </label>
-            <button>Submit</button>
-
+              className="signUpForm">
+          <div className="formFieldCont">
+            <label htmlFor="firstName">First Name</label>
+            <input className="inputField" {...register("firstName", { required: true, maxLength: 30 })} />
+            {errors.firstName && <span className="errorField">*This field is required</span>}
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="secondName">Surname</label>
+            <input className="inputField" {...register("secondName", { required: true, maxLength: 30 })} />
+            {errors.secondName && <span className="errorField">*This field is required</span>}
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="username">Choose a username</label>
+            <input className="inputField" {...register("username", { required: true, maxLength: 30 })} />
+            {errors.username && <span className="errorField">*This field is required</span>}
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="email">Email Address</label>
+            <input className="inputField wider" {...register("email", { required: true })} />
+            {errors.email && <span className="errorField">*This field is required</span>}
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input className="inputField" {...register("phoneNumber", { required: true })} />
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="password">Password</label>
+            <input className="inputField" {...register("password", { required: true, maxLength: 30, minLength: 8, validate: validatePassword  })} />
+            {errors.password && <span className="errorField">*{errors.password.message}</span>}
+          </div>
+          <div className="formFieldCont">
+            <label htmlFor="passwordVerify">Repeat password</label>
+            <input className="inputField" {...register("passwordVerify", { required: true, maxLength: 30, minLength: 8, validate: validatePasswordMatch  })} />
+            {errors.passwordVerify && <span className="errorField">*{errors.passwordVerify.message}</span>}
+          </div>
+          <button>Submit</button>
         </form>
+        
+        <Link to='/login' className="signUpLinkToLogin">
+          <p>Already have an account?</p>
+        </Link>
+
+      </section>
+
+        
 
     )
 }

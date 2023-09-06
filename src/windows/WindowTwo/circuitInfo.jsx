@@ -2,17 +2,19 @@ import React from "react";
 import { useState } from "react";
 import '../../assets/global.css';
 import { circuitInfo } from "../../data/circuitInfo";
+import { NextRaceInformation } from "../../hooks/ergastAPIQueries";
 
 export default function CircuitInfo({...props}) {
 
     // MUST UPDATE THE STATES WITH API WHEN BACK ONLINE
+    const { circuitName } = NextRaceInformation();
 
-    const [traction, setTraction] = useState(circuitInfo['Bahrain'].traction);
-    const [trackEvo, setTrackEvo] = useState(circuitInfo['Bahrain']['track evolution']);
-    const [braking, setBraking] = useState(circuitInfo['Bahrain'].braking);
-    const [asphaltAb, setAsphaltAb] = useState(circuitInfo['Bahrain']['asphalt abrasion']);
-    const [tyreStress, setTyreStress] = useState(circuitInfo['Bahrain']['tyre stress']);
-    const [downforce, setDownforce] = useState(circuitInfo['Bahrain'].downforce);
+    const [traction, setTraction] = useState(circuitInfo['Singapore'].traction);
+    const [trackEvo, setTrackEvo] = useState(circuitInfo['Singapore']['track evolution']);
+    const [braking, setBraking] = useState(circuitInfo['Singapore'].braking);
+    const [asphaltAb, setAsphaltAb] = useState(circuitInfo['Singapore']['asphalt abrasion']);
+    const [tyreStress, setTyreStress] = useState(circuitInfo['Singapore']['tyre stress']);
+    const [downforce, setDownforce] = useState(circuitInfo['Singapore'].downforce);
 
 
     return (

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/interface/logos/logo_whiteflag_blacktext.svg";
+import logo from "../assets/interface/logos/logo_notext_vector.svg";
 import { SignUpBtn } from "./buttons";
 import { LoginBtn } from "./buttons";
 import { Link } from "react-router-dom";

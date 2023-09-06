@@ -1,8 +1,13 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { PreviousRaceRound, PreviousRaceInformation } from "../hooks/ergastAPIQueries";
 import axios from "axios";
 
+
+
+
 export default function CalculatePointsGained() {
+
+
     const [predictions, setPredictions] = useState([]);
     // Get username from localstorage
     const username = localStorage.getItem('Username');
@@ -24,7 +29,7 @@ export default function CalculatePointsGained() {
           const data = response.data;
           // data returned as object notation, sort data below. WILL HAVE TO CHANGE DATA SORTING WHEN PROPER QUERIES HAPPEN
           const sortedData = data.rows[0];
-          // checl data is an object, then convert to an array of driver names
+          // check data is an object, then convert to an array of driver names
           if (typeof sortedData === 'object') {
               const predictionsArray = Object.values(sortedData);
               setPredictions(predictionsArray);
@@ -60,33 +65,5 @@ export default function CalculatePointsGained() {
         }
     }
   
-    return (
-        <div>
-            <h1>Prediction</h1>
-            <ul>
-                {/* map out predictions state - ADD LOADING SCREEN? */}
-        {predictions.length > 0 ? (
-          predictions.map((prediction, index) => (
-            <li key={index} id={`p${index + 1}`}>
-              {prediction}
-            </li>
-          ))
-        ) : (
-          <li>No predictions available.</li>
-        )}
-            </ul>
-            <h1>Result</h1>
-            <ul>
-                                {/* Render last round result */}
-                                {resultTop10.map((position, index) => (
-                    <li key={index}>
-                        {result.lastNames[index]}
-                    </li>
-                ))}
-            </ul>
-            <h1>{points}</h1>
-        </div>
-
-
-    )
+    return points;
 }

@@ -196,7 +196,12 @@ export const circuitFlags = {
       'downforce': 4
     },
     "Singapore": {
-
+      'traction': 1,
+      'track evolution': 1,
+      'braking': 1,
+      'asphalt abrasion': 1,
+      'tyre stress': 1,
+      'downforce': 1
     },
     "Japan": {
 

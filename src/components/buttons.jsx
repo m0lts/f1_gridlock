@@ -19,7 +19,7 @@ function Icon({isLoggedIn}) {
             </span>;
     }
     return <span>
-        <Link to='/login'>
+        <Link to='/login' className="linkBtns">
             <FontAwesomeIcon icon={faUser} /> Log In
         </Link>
         </span>;
@@ -32,8 +32,8 @@ function SignupIcon({isLoggedIn}) {
         </span>);
     }
     return (<span>
-        <Link to='/signup'>
-            <FontAwesomeIcon icon={faUser} /> Sign Up
+        <Link to='/signup' className="linkBtns">
+            <FontAwesomeIcon icon={faArrowRightToBracket} /> Sign Up
         </Link>
         </span>);
 }
