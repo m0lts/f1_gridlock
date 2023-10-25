@@ -90,14 +90,13 @@ h4 {
   background-color: var(--dark-grey);
   border: 1px solid var(--dark-grey);
   align-self: center;
-  margin-top:75px;
+  margin-top: 25px;
   font-size: 1.1rem;
 }
 .linkBtns {
   text-decoration: none;
   color: var(--white);
 }
-
 
 /* ******STYLING FOR ALL COMPONENTS CONSTANTLY ON PAGE****** */
 /* ****** */
@@ -127,7 +126,6 @@ header {
 
 .appBackground {
   background-color: var(--dark-grey);
-  border: 1px solid var(--black);
 }
 .windowOne,
 .windowTwo,
@@ -135,6 +133,8 @@ header {
 .windowFour {
   border-radius: 25px;
 }
+
+/* GIT TEST */
 
 /* Next Race Banner */
 .nextRaceBanner {
@@ -527,23 +527,23 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
 
 
 
-/* SIGN UP FORM */
-.signUpPage {
-  width:50%;
-  margin:50px auto;
-  background-color: var(--trans-white);
-  border-radius: 25px;
+/* SIGN UP AND LOG IN FORMS */
+.formPages {
+  background-color: var(--light-grey);
   padding-bottom: 50px;
+  height:100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.signUpHeading {
+.formPageHeadings {
   font-family: var(--titillium);
-  color:var(--white);
   font-weight: 600;
   text-align: center;
   padding:10px;
 }
-.signUpForm {
-  color:var(--white);
+.forms {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -557,6 +557,10 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
   flex-direction: column;
   align-items: center;
   gap:5px;
+}
+.formFieldCont label {
+  width: 200px;
+  text-align: center;
 }
 .inputField {
   border: none;
@@ -572,12 +576,13 @@ INCLUDES COMMON STYLING FOR WINDOWS 1 AND 2
 .errorField {
   color:var(--red);
   font-size: 0.8rem;
+  width:200px;
+  text-align: center;
 }
 .signUpLinkToLogin {
-  border:1px solid red;
-  margin:50px 0;
+  margin-bottom:25px;
   text-align: center;
-  color: var(--white);
+  color: var(--black);
 }
 
 

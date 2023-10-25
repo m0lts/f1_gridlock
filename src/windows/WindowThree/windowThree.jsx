@@ -7,6 +7,7 @@ export default function WindowThree() {
 
     const { points } = CalculatePointsGained();
 
+    console.log(points)
 
     return (
         <div className="windowThree">

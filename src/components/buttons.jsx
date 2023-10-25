@@ -62,7 +62,7 @@ export function LoginBtn() {
 
 export function SubmitBtn({type}) {
     return (
-        <button type={type} className="btn submitBtn">
+        <button className="btn submitBtn">
             Submit
         </button>
     )

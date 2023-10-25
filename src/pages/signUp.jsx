@@ -1,5 +1,6 @@
 import { Form, useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
+import { SubmitBtn } from "../components/buttons";
 
 export default function SignUp() {
 
@@ -67,11 +68,11 @@ export default function SignUp() {
             }
           };
     return (
-      <section className="signUpPage">
-        <h1 className="signUpHeading">Sign Up</h1>
+      <section className="formPages">
+        <h1 className="formPageHeadings">Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}
               control={control}
-              className="signUpForm">
+              className="forms">
           <div className="formFieldCont">
             <label htmlFor="firstName">First Name</label>
             <input className="inputField" {...register("firstName", { required: true, maxLength: 30 })} />
@@ -83,7 +84,7 @@ export default function SignUp() {
             {errors.secondName && <span className="errorField">*This field is required</span>}
           </div>
           <div className="formFieldCont">
-            <label htmlFor="username">Choose a username</label>
+            <label htmlFor="username">Username</label>
             <input className="inputField" {...register("username", { required: true, maxLength: 30 })} />
             {errors.username && <span className="errorField">*This field is required</span>}
           </div>
@@ -106,7 +107,7 @@ export default function SignUp() {
             <input className="inputField" {...register("passwordVerify", { required: true, maxLength: 30, minLength: 8, validate: validatePasswordMatch  })} />
             {errors.passwordVerify && <span className="errorField">*{errors.passwordVerify.message}</span>}
           </div>
-          <button>Submit</button>
+          <SubmitBtn />
         </form>
         
         <Link to='/login' className="signUpLinkToLogin">
