@@ -60,10 +60,29 @@ export function LoginBtn() {
     )
 }
 
-export function SubmitBtn({type}) {
+// NEW BUTTONS
+
+export function RedirectToSignup() {
     return (
-        <button className="btn submitBtn">
-            Submit
+        <button className="redirect_button btn">
+            <Link to="/signup" className="redirect_link">
+                New to Gridlock? Click here.
+            </Link>
         </button>
     )
+}
+
+export function RedirectToLogin() {
+    return (
+        <button className="redirect_button btn">
+            <Link to="/login" className="redirect_link">
+                Already have an account? Click here.
+            </Link>
+        </button>
+    )
+}
+
+
+export function SubmitButton() {
+    return <input type="submit" className="submit_button btn"/>
 }

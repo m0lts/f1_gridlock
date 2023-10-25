@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from 'bcrypt';
 
 const uri = process.env.MONGODB_URI;
 const options = {};
@@ -30,7 +31,22 @@ export default async function handler(request, response) {
             // Save data to formData variable
             const formData = request.body;
 
-            console.log(formData);
+            // Delete verify_password property
+            delete formData.verify_password;
+
+            // Hash the user's password
+            const hashedPassword = await bcrypt.hash(formData.password, 10);
+            // Update the formData with the hashed password
+            formData.password = hashedPassword;
+
+            // Check if email already exists in either the musicians or venues collections
+            const email = formData.email;
+            // Return error to frontend if true
+            const emailInDatabase = await dbCollection.findOne({ email });
+            if (emailInDatabase) {
+                response.status(400).json({ error: 'Email address taken.' });
+                return;
+            }
 
             const result = await dbCollection.insertOne(formData);
             response.status(201).json({ message: "Account successfully created.", result });
@@ -53,3 +69,4 @@ export default async function handler(request, response) {
         }
     }
 }
+

@@ -47,6 +47,20 @@ h4 {
   }
 }
 
+/* Universal components */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--red);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Buttons */
 .btn {
   font-family: var(--titillium);
@@ -86,12 +100,19 @@ h4 {
   font-size: 1rem;
 }
 
-.submitBtn {
+.submit_button {
   background-color: var(--dark-grey);
   border: 1px solid var(--dark-grey);
   align-self: center;
-  margin-top: 25px;
-  font-size: 1.1rem;
+}
+.redirect_button {
+  width:100%;
+  margin-top:10px;
+  background: none;
+}
+.redirect_link {
+  text-align: center;
+  color:var(--black);
 }
 .linkBtns {
   text-decoration: none;
@@ -624,237 +645,88 @@ footer {
 
 
 
-
-/* .makePredictionForm {
-  width:400px;
-  margin:0 auto;
-  padding:25px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.formOptionCont {
-  border-top:2px solid black;
-  border-left:2px solid black;
-  border-right:2px solid black;
-  width:fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap:5px;
-  padding:10px;
-  height:5px;
-  margin-bottom: 35px;
-}
-.makePredictionForm .p2Cont,
-.makePredictionForm .p4Cont,
-.makePredictionForm .p6Cont,
-.makePredictionForm .p8Cont,
-.makePredictionForm .p10Cont {
-  align-self: flex-end;
-}
-.formOptionCont label {
-  font-weight: 600;
-}
-.formSelectCont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap:10px;
-}
-.colorBox {
-  width:5px;
-  height:35px;
-  border: 5px solid var(--black);
-}
-.dropdownElement {
-  border: none;
-  background-color: #ffffff00;
-  font-size: 1.25rem;
-  width:auto;
-  font-family: var(--titillium);
-} */
-
-/* Standings window */
-
-
-/* Global Standings table */ 
-/* .natTableFlag {
-  width:25px;
-  height:25px;
-}
-.globalStandingsTable.window {
-  background-color: var(--trans-white);
-  width:75%;
-  margin: 0 auto;
-  margin-bottom: 50px;
-}
-.tHeader {
-  padding:5px;
-  background-color: var(--dark-grey);
-  color: var(--white);
-}
-.tHeaderNarrow {
-  display: none;
-}
-.tPos,
-.tFlag,
-.tUser,
-.tPoints {
-  text-align: center;
-  padding:5px;
-}
-.tPoints {
-  font-weight: 600;
-}
-
-/* Home page middle section media queries */
-/* @media screen and (max-width:1100px) {
-  .makePredictionForm {
-    width:325px;
-    margin-bottom: 25px;
-  }
-  .tHeaderNarrow {
-    display: block;
-  }
-  .tHeaderWide {
-    display: none;
-  }
-}
-@media screen and (max-width:767px) {
-  .homeMiddleSection {
+/* NEW FORM STYLING */
+/* *** LOGIN and SIGNUP PAGES *** */
+.gateway_page_body {
+    background-color: var(--dark-grey);
+    padding:50px;
+    width:100%;
+    min-height:100vh;
+    display: flex;
     flex-direction: column;
-  }
-  .makePredictionWindow {
-    width: 98%;
-    margin: 15px auto;
-  }
-  .standingsWindow {
-    width: 98%;
-    margin: 0 auto;
-    margin-bottom: 15px;
-  }
-}
-@media screen and (max-width:400px) {
-  .makePredictionHeader {
-    flex-direction: row-reverse;
     justify-content: center;
-    gap:25px;
-  }
-  .MPFlag {
-    display: none;
-  }
-} */
-
-/* Home page bottom section - last round stats */
-/* .prevRoundStats {
-  background-color: var(--dark-grey);
-  width: 99%;
-  border-radius: 0 25px 25px 0;
-  box-shadow: 5px 5px 15px var(--white);
-  padding:25px 0;
-  margin-top:15px;
+    align-items: center;
 }
-.prevRoundStats h3 {
-  color: var(--white);
-  text-align: center;
+.gateway_page_header {
+    width:250px;
+    margin-bottom:25px;
+    background: none;
 }
-.prevRoundStatsFlexbox {
-  width:100%;
+.gateway_page_logo {
+    width:100%;
+    height:auto;
+}
+.gateway_page_main {
+    background-color: var(--light-grey);
+    border-radius: 25px;
+    padding:25px;
+    width:350px;
+}
+.gateway_page_title {
+    text-align: center;
+    margin-bottom:25px;
+    font-size: 3rem;
+}
+.gateway_page_name_inputs {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap:250px;
-  margin:25px 0;
-}
-.prevRaceResultCont {
-  border:1px solid var(--white);
-  background-color: var(--white);
-  border-radius: 25px;
-  width:25%;
-}
-.prevRaceResultTitle {
-  text-align: center;
-  padding:30px;
-}
-.prevRaceResultTitle img {
-  width:25px;
-  height:25px;
-}
-.prevRaceResult {
   width:100%;
-  margin:0 auto;
+  justify-content: space-between;
 }
-.prevResultItem {
-  position: relative;
-  text-align: center;
-  list-style: none;
-  padding:15px;
-  text-align: center;
-  counter-increment: positionCounter;
+.gateway_page_forename_input,
+.gateway_page_surname_input {
+  width:45%;
 }
-.prevResultItem::before {
-  content: counter(positionCounter) ".";
-  counter-increment: li;
-  content: counter(positionCounter);
-  font-size: 3rem;
-  color: var(--dark-grey);
-  font-style: italic;
-  font-weight: 900;
-  opacity: 0.25;
-  position: absolute;
-  top:-5px;
-  left:5px;
-  display: block;
-  width:25px;
-  height:25px;
+.gateway_page_message {
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 25px;
 }
-.prevResultItem:nth-child(1),
-.prevResultItem:nth-child(3),
-.prevResultItem:nth-child(5),
-.prevResultItem:nth-child(7),
-.prevResultItem:nth-child(9) {
-  background-color: var(--light-grey);
+.gateway_page_form {
+    display: flex;
+    flex-direction: column;
+    gap:25px;
 }
-.driverNum {
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--dark-grey);
-  padding: 0 20px;
+.gateway_page_form_input {
+    width:100%;
+    height:40px;
+    padding:10px;
+    border:none;
+    border-radius: 5px;
+    font-family: var(--font-family);
 }
-.driverFN {
-  font-size: 0.8rem;
-  padding: 0 10px;
+
+/* Form page errors */
+.error-message {
+    color:red;
+    font-size: 0.7rem;
+    margin-top:5px;
 }
-.driverSN {
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  font-weight: 600;
+.forgot-password-message {
+    font-size: 0.8rem;
+    text-align: center;
 }
-.prevRoundStatsBox {
-  background-color: var(--white);
-  border-radius: 25px;
+.forgot-password-link {
+    color:var(--true-black);
+    text-decoration: none;
 }
-.pointsScored,
-.topPointsScored {
-  background-color: var(--light-grey);
+.forgot-password-link:hover {
+    text-decoration: underline;
 }
-.pointsScored,
-.topPointsScored,
-.avgPointsScored {
-  padding:65px;
-  text-align: center;
+
+/* Submission processing box */
+.submission_processing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:50px;
 }
-.pointsScored {
-  border-radius: 25px 25px 0 0;
-}
-.topPointsScored {
-  border-radius: 0 0 25px 25px;
-}
-.pointsBig {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  padding-top:25px;
-}  */

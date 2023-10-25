@@ -1,122 +1,205 @@
-import { Form, useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
-import { SubmitBtn } from "../components/buttons";
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { SubmitButton, RedirectToLogin } from "../components/buttons";
+
+
 
 export default function SignUp() {
 
-    const { register, 
-        control, 
-        handleSubmit,
-        watch,
-        formState: {errors}, } = useForm();
+    // SET UP NAVIGATE
+    const navigate = useNavigate();
 
-        // TAKE A LOOK AT THE VALIDATION - ITS NOT WORKING
+    // SET STATES
+    // For data packet to be sent to database
+    const [formValues, setFormValues] = useState({
+        forename: '',
+        surname: '',
+        username: '',
+        email: '',
+        password: '',
+        verify_password: '',
+    });
+    // For validation errors
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [verifyPasswordError, setVerifyPasswordError] = useState('');
+    // For submission modal
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
-        const validatePassword = (value) => {
-            console.log('Validating password:', value);
-            let isValid = true;
-            let message = '';
 
-            if (!value) {
-            isValid = false;
-            message = 'This field is required';
-            } else if (!/(?=.*[a-zA-Z])(?=.*[0-9])/.test(value)) {
-            isValid = false;
-            message = 'Password must include at least one letter and one number';
-            } else if (value.length < 8) {
-            isValid = false;
-            message = 'Password must be at least 8 characters long';
-            }
+    
+    // SET FORM VALUES TO ENTERED VALUES
+    const handleInputChange = async (event) => {
+        const { name, value } = event.target;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
 
-            
-            return { isValid, message };
-          };
-        
-          const watchPassword = watch("password");
-          
-          const validatePasswordMatch = (value) => {
-            let isValid = true;
-            let message = '';
-        
-            if (value !== watchPassword) {
-              isValid = false;
-              message = 'Passwords must match';
-            }
-        
-            return { isValid, message };
-          };
+        // Email validation
+        if (name === 'email') {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            setEmailError(emailPattern.test(value) ? '' : '* Must be a valid email address');
+        }
+        // Password validation
+        if (name === 'password') {
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            setPasswordError(passwordPattern.test(value) ? '' : '* Password must be at least 8 characters long, contain a capital letter, and a number');
+        }
+        // Verify password validation
+        if (name === 'verify_password' || name === 'password') {
+            setVerifyPasswordError(value === formValues.password ? '' : '* Passwords do not match');
+        }
+    };
+    
 
-          const onSubmit = async (data) => {
-            try {
-              const response = await fetch('/api/create-account.js', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-              });
-        
-              if (response.ok) {
-                // Handle successful submission
-                alert('Your application is updated.');
+
+    // HANDLE FORM SUBMISSION
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Check for errors
+        if (emailError || passwordError || verifyPasswordError) {
+            // If there are errors, do not submit the form
+            alert('Please ensure all fields are filled out correctly.');
+            return;
+        } else {
+            setFormSubmitted(true);
+        }
+
+        try {
+            const response = await fetch('/api/signup_handling.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formValues),
+            });
+      
+            // Handle relative responses and edit modal message.
+            if (response.ok) {
+                // Redirect user to login page if sign up successful
+                navigate('/');
+              } else if (response.status === 400) {
+                // Email already taken
+                setEmailError('* Email already in use.');
+                setFormSubmitted(false);
               } else {
-                // Handle submission error
-                alert('Submission has failed.');
+                alert('Account creation failed, please try again later.');
+                setFormSubmitted(false);
               }
-            } catch (error) {
-              console.error('Error submitting form:', error);
-            }
-          };
+          } catch (error) {
+            console.error('Error submitting form:', error);
+          }
+        
+    };
+
+
     return (
-      <section className="formPages">
-        <h1 className="formPageHeadings">Sign Up</h1>
-        <form onSubmit={handleSubmit(onSubmit)}
-              control={control}
-              className="forms">
-          <div className="formFieldCont">
-            <label htmlFor="firstName">First Name</label>
-            <input className="inputField" {...register("firstName", { required: true, maxLength: 30 })} />
-            {errors.firstName && <span className="errorField">*This field is required</span>}
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="secondName">Surname</label>
-            <input className="inputField" {...register("secondName", { required: true, maxLength: 30 })} />
-            {errors.secondName && <span className="errorField">*This field is required</span>}
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="username">Username</label>
-            <input className="inputField" {...register("username", { required: true, maxLength: 30 })} />
-            {errors.username && <span className="errorField">*This field is required</span>}
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="email">Email Address</label>
-            <input className="inputField wider" {...register("email", { required: true })} />
-            {errors.email && <span className="errorField">*This field is required</span>}
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input className="inputField" {...register("phoneNumber", { required: true })} />
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="password">Password</label>
-            <input className="inputField" {...register("password", { required: true, maxLength: 30, minLength: 8, validate: validatePassword  })} />
-            {errors.password && <span className="errorField">*{errors.password.message}</span>}
-          </div>
-          <div className="formFieldCont">
-            <label htmlFor="passwordVerify">Repeat password</label>
-            <input className="inputField" {...register("passwordVerify", { required: true, maxLength: 30, minLength: 8, validate: validatePasswordMatch  })} />
-            {errors.passwordVerify && <span className="errorField">*{errors.passwordVerify.message}</span>}
-          </div>
-          <SubmitBtn />
-        </form>
-        
-        <Link to='/login' className="signUpLinkToLogin">
-          <p>Already have an account?</p>
-        </Link>
-
-      </section>
-
-        
+        <section className="gateway_page_body"> 
+        {/* omment */}
+            <header className="gateway_page_header">
+                <Link to="/">
+                    <img src="/src/assets/interface/logos/logo_whitetext.svg" alt="Gridlock Logo" className="gateway_page_logo" />
+                </Link>
+            </header>
+            <main className="gateway_page_main">
+                <h1 className="gateway_page_title">Sign Up</h1>
+                {formSubmitted ? (
+                    <div className="submission_processing">
+                        <div className="loader"></div>
+                    </div>
+                ) : 
+                <form action="post" className="gateway_page_form" onSubmit={handleSubmit}>
+                    <div className="gateway_page_name_inputs">
+                        <div className="gateway_page_forename_input">
+                            {/* <label htmlFor="forename">First Name</label> */}
+                            <input 
+                                type="text" 
+                                id="forename" 
+                                name="forename" 
+                                placeholder="First Name" 
+                                required={true}
+                                className="gateway_page_form_input"
+                                value={formValues.forename}
+                                onChange={handleInputChange}
+                                />
+                        </div>
+                        <div className="gateway_page_surname_input">
+                            {/* <label htmlFor="surname">Second Name</label> */}
+                            <input 
+                                type="text" 
+                                id="surname" 
+                                name="surname" 
+                                placeholder="Second Name" 
+                                required={true}
+                                className="gateway_page_form_input"
+                                value={formValues.surname}
+                                onChange={handleInputChange}
+                                />
+                        </div>
+                    </div>
+                    <div className="gateway_page_username_input">
+                        {/* <label htmlFor="surname">Second Name</label> */}
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Username" 
+                            required={true}
+                            className="gateway_page_form_input"
+                            value={formValues.username}
+                            onChange={handleInputChange}
+                            />
+                    </div>
+                    <div className="gateway_page_email_input">
+                        {/* <label htmlFor="email">Email</label> */}
+                        <input 
+                        type="text" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Email Address" 
+                        required={true}
+                        className="gateway_page_form_input" 
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                        />
+                        {emailError && <div className="error-message">{emailError}</div>}
+                    </div>
+                    <div className="gateway_page_password_input">
+                        {/* <label htmlFor="password">Password</label> */}
+                        <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        required={true}
+                        className="gateway_page_form_input" 
+                        value={formValues.password}
+                        onChange={handleInputChange}
+                        />
+                        {passwordError && <div className="error-message">{passwordError}</div>}
+                    </div>
+                    <div className="gateway_page_verify_password_input">
+                        {/* <label htmlFor="verify_password">Repeat Password</label> */}
+                        <input 
+                        type="password" 
+                        id="verify_password" 
+                        name="verify_password" 
+                        placeholder="Repeat Password" 
+                        required={true}
+                        className="gateway_page_form_input" 
+                        value={formValues.verify_password}
+                        onChange={handleInputChange}
+                        />
+                        {verifyPasswordError && <div className="error-message">{verifyPasswordError}</div>}
+                    </div>
+                    <SubmitButton />
+                </form>
+                }
+                <RedirectToLogin />
+            </main>
+        </section>
 
     )
 }

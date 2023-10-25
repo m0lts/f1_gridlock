@@ -18,7 +18,7 @@ export default function GrandPrix() {
     const { raceCountdown } = CountdownFunction();
 
     // Get username from useUsername hook located in usernameHook.jsx
-    const username = useUsername();
+    const {forename, surname} = useUsername();
 
     return (
         <section className="nextRaceBanner">
@@ -29,8 +29,8 @@ export default function GrandPrix() {
             <div className="bannerHeroMain">
                 <div className="heroMainLeft">
                     <div>
-                    {username ? (
-                        <p>Welcome, {username}!</p>
+                    {forename ? (
+                        <p>Welcome, {forename} {surname}!</p>
                     ) : (
                         <p>You are not logged in.</p>
                     )}
