@@ -16,7 +16,7 @@ export default function LogIn() {
 
     const onSubmit = async (data) => {
         try {
-            const response = await fetch('/api/process-login.js', {
+            const response = await fetch('/api/mongodb_test.js', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -24,25 +24,34 @@ export default function LogIn() {
             body: JSON.stringify(data),
             });
         
-            if (response.ok) {
-                const responseData = await response.json();
-                const userEmail = responseData.userEmail;
-                const userPassword = responseData.userPassword;
-                const userFirstName = responseData.userFirstName;
-                const userSecondName = responseData.userSecondName;
-                const userUsername = responseData.userUsername;
+            // if (response.ok) {
+            //     const responseData = await response.json();
+            //     const userEmail = responseData.userEmail;
+            //     const userPassword = responseData.userPassword;
+            //     const userFirstName = responseData.userFirstName;
+            //     const userSecondName = responseData.userSecondName;
+            //     const userUsername = responseData.userUsername;
         
-                if (userEmail && userPassword) {
-                    console.log('Login successful');
-                    localStorage.setItem('Username', userUsername)
-                    navigate('/');
-                    window.location.reload();
-                  }
-              } else {
+            //     if (userEmail && userPassword) {
+            //         console.log('Login successful');
+            //         localStorage.setItem('Username', userUsername)
+            //         navigate('/');
+            //         window.location.reload();
+            //       }
+            //   } else {
+            //     const responseData = await response.json();
+            //     const errorMessage = responseData.message;
+            //     console.log(errorMessage);
+            //   }
+
+            if (response.ok) {
+                console.log('Successfully uploaded to mongodb')
+            } else {
                 const responseData = await response.json();
                 const errorMessage = responseData.message;
                 console.log(errorMessage);
-              }
+            }
+
         } catch (error) {
             console.error('Error submitting form:', error);
         }
