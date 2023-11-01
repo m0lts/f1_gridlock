@@ -1,0 +1,58 @@
+/* Buttons */
+.btn {
+    font-family: var(--titillium);
+    border:none;
+    color:var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+    padding:10px;
+  }
+  .btn:hover,
+  .btn:active {
+    opacity: 0.9;
+  }
+  .btn:active {
+    border: 1px solid var(--white);
+    opacity: 1;
+  }
+  .hideSignUpBtn {
+    display: none;
+  }
+  .signUpBtn {
+    background-color: var(--red);
+    border: 1px solid var(--light-grey);
+    color:var(--black);
+    font-size: 1rem;
+  }
+  .signUpBtn:active {
+    border: 1px solid var(--black);
+  }
+  .signUpBtnTxt {
+    margin-left: 5px;
+  }
+  
+  .loginBtn {
+    background-color: var(--black);
+    border:1px solid var(--black);
+    font-size: 1rem;
+  }
+  
+  .submit_button {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--dark-grey);
+    align-self: center;
+  }
+  .redirect_button {
+    width:100%;
+    margin-top:10px;
+    background: none;
+  }
+  .redirect_link {
+    text-align: center;
+    color:var(--black);
+  }
+  .linkBtns {
+    text-decoration: none;
+    color: var(--white);
+  }
+  

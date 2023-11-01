@@ -1,0 +1,51 @@
+/* Nav / tab section */
+/* Desktop */
+.nav_tabs_container {
+    width:100%;
+    background-color: var(--light-grey);
+}
+.nav_tabs_list {
+    padding:0 25px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+.nav_tab {
+    list-style: none;
+    padding:10px 0;
+    width:25%;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    transition: all 150ms linear;
+}
+.nav_tab:hover {
+    background-color: var(--trans-white);
+    cursor: pointer;
+    transition: all 150ms linear;
+}
+.nav_tab.active {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    font-weight: 600;
+    cursor:auto;
+    transition: all 150ms line150
+}
+.nav_tab_icon {
+    margin-right:10px;
+}
+
+/* Mobile */
+@media screen and (max-width:768px) {
+    .nav_tabs_list {
+        padding: 0;
+    }
+    .nav_tab {
+        border-radius: 0 0 10px 10px;
+    }
+    .nav_tab_icon {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
+

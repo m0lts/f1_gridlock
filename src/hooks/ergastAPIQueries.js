@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { circuitNames, circuitFlags, circuitTracks } from "../data/circuitInfo";
-import { set } from "react-hook-form";
+import { circuitNames, circuitFlags, circuitTracks } from "../data/CircuitInfo";
 
 // **********************************************************************************************************************
 // **********************************************************************************************************************
@@ -25,6 +24,9 @@ export function NextRaceInformation() {
     const [longitude, setLongitude] = useState('');
     const [latitude, setLatitude] = useState('');
 
+    // Start of sprint weekend code
+    const [sprintWeekend, setSprintWeekend] = useState(false);
+
     // Define Information States
     const [round, setRound] = useState('');
     const [flag, setFlag] = useState('');
@@ -44,7 +46,6 @@ export function NextRaceInformation() {
                 const data = await response.json();
 
 
-
                 // SET SCHEDULE STATES
                 // First Practice
                 const firstPracticeDate = data.MRData.RaceTable.Races[0].FirstPractice.date;
@@ -56,11 +57,16 @@ export function NextRaceInformation() {
                 const secondPracticeTime = data.MRData.RaceTable.Races[0].SecondPractice.time;
                 setPracticeTwoDate(secondPracticeDate);
                 setPracticeTwoTime(secondPracticeTime);
-                // Third Practice
-                const thirdPracticeDate = data.MRData.RaceTable.Races[0].ThirdPractice.date;
-                const thirdPracticeTime = data.MRData.RaceTable.Races[0].ThirdPractice.time;
-                setPracticeThreeDate(thirdPracticeDate);
-                setPracticeThreeTime(thirdPracticeTime);
+                // Third Practice - IF NOT A SPRINT WEEKEND
+                if (data.MRData.RaceTable.Races[0].ThirdPractice) {
+                    const thirdPracticeDate = data.MRData.RaceTable.Races[0].ThirdPractice.date;
+                    const thirdPracticeTime = data.MRData.RaceTable.Races[0].ThirdPractice.time;
+                    setPracticeThreeDate(thirdPracticeDate);
+                    setPracticeThreeTime(thirdPracticeTime);
+                } else {
+                    setSprintWeekend(true);
+                }
+                
                 // Qualifying
                 const qualifyingDate = data.MRData.RaceTable.Races[0].Qualifying.date;
                 const qualifyingTime = data.MRData.RaceTable.Races[0].Qualifying.time;

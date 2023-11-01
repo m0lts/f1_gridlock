@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { NextRaceInformation } from "./ergastAPIQueries";
-import { set } from "react-hook-form";
+import { NextRaceInformation } from "./ErgastAPIQueries";
 
 // Edit time string to account for BST
 // REMOVE THIS FUNCTION WHEN BST ENDS

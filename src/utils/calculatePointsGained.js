@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PreviousRaceRound, PreviousRaceInformation } from "../hooks/ergastAPIQueries";
+import { PreviousRaceRound, PreviousRaceInformation } from "../hooks/ErgastAPIQueries";
 import axios from "axios";
 
 

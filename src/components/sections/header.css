@@ -1,0 +1,20 @@
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin:0 auto;
+    padding:5px 5%;
+    background-color: var(--light-grey);
+  }
+  .logoImg {
+    width:75px;
+    height:75px;
+  }
+  .headerRightFlex {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap:25px;
+  }

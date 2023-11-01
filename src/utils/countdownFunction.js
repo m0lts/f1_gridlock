@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NextRaceInformation } from "../hooks/ergastAPIQueries";
+import { NextRaceInformation } from "../hooks/ErgastAPIQueries";
 
 export function CountdownFunction() {
 

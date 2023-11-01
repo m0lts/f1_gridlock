@@ -1,6 +1,5 @@
 export function useUsername() {
-  const forename = sessionStorage.getItem('Forename');
-  const surname = sessionStorage.getItem('Surname');
-  return {forename, surname};
+  const username = sessionStorage.getItem('Username');
+  return {username};
 }
 

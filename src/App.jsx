@@ -1,37 +1,8 @@
-// import { useState } from 'react';
-// import Header from './components/header';
-// import Body from './components/body';
-// import Footer from './components/footer';
-// import LogIn from './pages/logIn';
-// import SignUp from './pages/signUp';
-// import { Route, Routes } from 'react-router-dom';
-// import './assets/global.css';
-
-
-// function App() {
-//   return (
-//     <>
-//       <Header />
-//       <main className='appBackground'>
-//         <Routes>
-//             <Route path='/' element={<Body />} />
-//             <Route path='/signup' element={<SignUp />} />
-//             <Route path='/login' element={<LogIn />} />
-//         </Routes>
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
-
-// export default App
-
-
-import Body from './components/body';
-import LogIn from './pages/logIn';
-import SignUp from './pages/signUp';
-import ForgotPassword from './pages/forgot_password';
-import ResetPassword from './pages/reset_password';
+import Body from './components/sections/Body';
+import LogIn from './components/pages/accounts/LogIn';
+import SignUp from './components/pages/accounts/SignUp';
+import ForgotPassword from './components/pages/accounts/ForgotPassword';
+import ResetPassword from './components/pages/accounts/ResetPassword';
 import { Route, Routes } from 'react-router-dom';
 
 
