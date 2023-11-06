@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import GrandPrix from './GrandPrix'
-import { SeasonSchedule, NextRaceInformation } from '../../../hooks/ErgastAPIQueries';
+import { SeasonSchedule } from '../../../hooks/ErgastAPIQueries';
 import { circuitFlags } from '../../../data/CircuitInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
