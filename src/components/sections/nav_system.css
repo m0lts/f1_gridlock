@@ -18,6 +18,8 @@
     text-align: center;
     border-radius: 10px 10px 0 0;
     transition: all 150ms linear;
+    text-decoration: none;
+    color: var(--dark-grey);
 }
 .nav_tab:hover {
     background-color: var(--trans-white);
@@ -29,7 +31,7 @@
     color: var(--white);
     font-weight: 600;
     cursor:auto;
-    transition: all 150ms line150
+    transition: all 150ms linear;
 }
 .nav_tab_icon {
     margin-right:10px;
