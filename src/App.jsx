@@ -6,7 +6,7 @@ import SignUp from './components/pages/accounts/SignUp';
 import ForgotPassword from './components/pages/accounts/ForgotPassword';
 import ResetPassword from './components/pages/accounts/ResetPassword';
 import { Route, Routes } from 'react-router-dom';
-import Standings from './components/Pages/Standings/standings';
+import Standings from './components/pages/standings/Standings';
 import Information from './components/pages/information/Information';
 
 
