@@ -1,17 +1,11 @@
 .races_carousel {
     max-height: 87vh;
     overflow: scroll;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: flex-start; */
 }
 .race_round {
     color:var(--white);
 }
-.race_round.active {
-    position: sticky;
-    top:0;
-    height:500px;
+.active_race_round {
     background-color: var(--medium-grey);
 }
 
