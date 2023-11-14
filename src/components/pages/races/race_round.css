@@ -83,6 +83,10 @@
 
 .selected_race_round {
   position: relative;
+  height:500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .selected_race_round_img_cont {

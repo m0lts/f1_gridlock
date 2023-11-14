@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { circuitFlags, circuitTracks } from "../../../data/CircuitInfo";
+import CompleteRaceRounds from "./CompleteRaceRounds";
 import './race_round.css'
 
 export default function RaceRound({ apiData, competitionToShow, roundNumber, raceComplete }) {
-
-    // Get countdown timer to race start from CountdownHook hook located in countdownFunctions.jsx
-    // const { raceCountdown } = CountdownFunction();
 
     // Get competition to show
     const competition = apiData.filter(event => event.competition.name === competitionToShow);
@@ -35,17 +33,38 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
         };
     };
 
-    // For races that have completed, retrieve result data
-    // Race results are done by raceID. Can be retrieved at competitionRace.id
-    // Then must send the competitionRace.id to "https://api-formula-1.p.rapidapi.com/rankings/races?race=${competitionRace.id}"
-    // Move useEffect hook from App.jsx to Races.jsx - there's no point in having it there.
 
-    useEffect(() => {
-        console.log(competitionRace)
-    }, [competitionRace])
+    // SORT WHEN I GET MORE API CALLS , THIS SHOULD WORK
+    // Race countdown 
+    // const [countdown, setCountdown] = useState('');
+
+    // useEffect(() => {
+    //     const updateCountdown = () => {
+    //     const now = new Date().getTime();
+    //     const apiTime = new Date(competitionRace[0].date).getTime();
+    //     const difference = apiTime - now;
+
+    //     if (difference > 0) {
+    //         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    //         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    //         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    //         const countdownText = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    //         setCountdown(countdownText);
+    //     } else {
+    //         setCountdown('Race started!');
+    //     }
+    //     };
+
+    //     const intervalId = setInterval(updateCountdown, 1000);
+
+    //     return () => clearInterval(intervalId);
+    // }, [competitionRace[0].date]);
+
 
     return (
-        <section className="nextRaceBanner">
+        <section>
             {!competitionRace || !competitionQualifying ? (
                 <div className="submission_processing">
                     <div className="loader"></div>
@@ -74,7 +93,7 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                                         <li className="selected_race_round_session">
                                             <span>FP1:</span>
                                             <span>{formatDateTime(competitionFp1[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionFp1[0].date).formattedTime} GMT</span>
+                                            <span>{formatDateTime(competitionFp1[0].date).formattedTime}</span>
                                         </li>
                                         <li className="selected_race_round_session">
                                             <span>Qualifying:</span>
@@ -128,7 +147,9 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                                 )}
                                 </>
                             ) : (
-                                <h1>Complete</h1>
+                                <CompleteRaceRounds
+                                    raceID={competitionRace[0].id}
+                                />
                             )}
                             
                         </div>
@@ -140,7 +161,8 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                         </div>
                     </div>
                     <div className="selected_race_round_bottom_section">
-                        <p>Race Countdown: 00:00:00</p>
+                        {/* <p>{countdown}</p> */}
+                        <p>Countdown</p>
                     </div>
                 </div>
             )}
