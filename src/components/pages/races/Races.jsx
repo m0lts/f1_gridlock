@@ -6,77 +6,114 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './races.css'
 
-export default function Races() {
+export default function Races({ returnedApiData }) {
 
-    const rounds = SeasonSchedule();
-
-    useEffect(() => {
-        async function fetchRoundNumber() {
-            try {
-                const response = await fetch('https://ergast.com/api/f1/current/next.json');
-                const data = await response.json();
-                const deconstructedAPI = data.MRData.RaceTable.Races[0];
-                const roundNumber = deconstructedAPI.round;
-                const roundNumberInt = parseInt(roundNumber);
-                if (typeof roundNumberInt === 'number') {
-                    setActiveRound(roundNumberInt);
-                } else {
-                    console.log('Error: round number is a string.')
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchRoundNumber();
-    }, [])
-
-    const [activeRound, setActiveRound] = useState();
-    const activeElementRef = useRef(null);
-
-    const toggleRound = (index) => {
-        if (activeRound === index + 1) {
-          setActiveRound(null); // Toggle it off
+    // Assign rounds to activeRound if clicked
+    const [activeUpcomingRound, setActiveUpcomingRound] = useState();
+    const [activePreviousRound, setActivePreviousRound] = useState();
+    const [activePostponedRound, setActivePostponedRound] = useState();
+    const [activeCancelledRound, setActiveCancelledRound] = useState();
+    const toggleUpcomingRound = (index) => {
+        if (activeUpcomingRound === index + 1) {
+          setActiveUpcomingRound(null);
         } else {
-          setActiveRound(index + 1); // Toggle it on
+          setActiveUpcomingRound(index + 1);
         }
-      };
-
-
-    useEffect(() => {
-        if (activeElementRef.current) {
-            activeElementRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    const togglePreviousRound = (index) => {
+        if (activePreviousRound === index + 1) {
+          setActivePreviousRound(null);
+        } else {
+          setActivePreviousRound(index + 1);
         }
+    };
+    const togglePostponedRound = (index) => {
+        if (activePostponedRound === index + 1) {
+          setActivePostponedRound(null);
+        } else {
+          setActivePostponedRound(index + 1);
+        }
+    };
+    const toggleCancelledRound = (index) => {
+        if (activeCancelledRound === index + 1) {
+          setActiveCancelledRound(null);
+        } else {
+          setActiveCancelledRound(index + 1);
+        }
+    };
 
-    }, [activeRound]);
+    // Sort data into correct array
+    const competitionRaces = returnedApiData.filter(event => event.type === 'Race');
+    const scheduledRaces = competitionRaces
+    .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
+    .filter(event => event.status === 'Scheduled');
+
+    const completedRaces = competitionRaces
+    .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
+    .filter(event => event.status === 'Completed');
+
+    const postponedRaces = competitionRaces
+    .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
+    .filter(event => event.status === 'Postponed');
+
+    const cancelledRaces = competitionRaces
+    .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
+    .filter(event => event.status === 'Cancelled');
+
 
     return (
-        <section className="races_carousel">
+        <>
+        {!returnedApiData ? (
+            <section className="homepage_loader">
+                    <div className="loader"></div>
+            </section>
+        ) : (
+            <section className="races_carousel">
             <ul>
-            {rounds.map((round, index) => (
-                <li key={index} className='race_round' onClick={() => toggleRound(index)}>
-                    <div 
-                    className={activeRound === index + 1 ? 'active_race_round' : ''}
-                    ref={activeRound === index + 1 ? activeElementRef : null}
-                    >
-                    {activeRound === index + 1 ? (
+                <li className="race_carousel_dividers">Next Race</li>
+                {scheduledRaces.length > 0 && (
+                    <li 
+                        key={scheduledRaces[0].originalIndex}
+                        className='race_round active_race_round'
+                        >
                         <RaceRound
-                            roundNumberProps={index + 1}
-                        />
-                    ) : (
+                            apiData={returnedApiData}
+                            competitionToShow={scheduledRaces[0].competition.name}
+                            roundNumber={scheduledRaces[0].originalIndex}
+                        /> 
+                    </li>
+                )}
+                <li className="race_carousel_dividers">Upcoming races</li>
+                {scheduledRaces.slice(1).map((round, index) => (
+                    <li 
+                        key={index}
+                        className='race_round'
+                        onClick={() => toggleUpcomingRound(index)}
+                    >
+                        <div 
+                        className={activeUpcomingRound === index + 1 ? 'active_race_round' : ''}
+                        >
+                        {activeUpcomingRound === index + 1 ? (
+                            <RaceRound
+                                apiData={returnedApiData}
+                                competitionToShow={round.competition.name}
+                                roundNumber={round.originalIndex}
+                            />
+                        ) : (
                         <div className='inactive_race_round'>
                             <p className='inactive_race_round_heading'>
                                 <span className='inactive_race_round_heading_text'>Round </span>
-                                <span className='inactive_race_round_heading_number'>{index + 1}</span>
+                                <span className='inactive_race_round_heading_number'>{round.originalIndex}</span>
                             </p>
                             <figure className='inactive_race_round_img_cont'>
                                 <img
                                 className='inactive_race_round_img'
-                                src={round.country ? circuitFlags[round.country] : ''}
-                                alt={round.country ? round.country + " Flag" : ''}
+                                src={round.competition.location.country ? circuitFlags[round.competition.location.country] : ''}
+                                alt={round.competition.location.country ? round.competition.location.country + " Flag" : ''}
                                 />
                             </figure>
                             <h2 className="inactive_race_round_race_title">
-                                {round.raceName || 'Race Name Not Available'}
+                                {round.competition.name || 'Race Name Not Available'}
                             </h2>
                             <div className="inactive_race_round_chevrons">
                                 <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
@@ -84,11 +121,149 @@ export default function Races() {
                                 <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
                             </div>
                         </div>
-                    )}
-                    </div>
-                </li>
-            ))}
+                        )}
+                        </div>
+                    </li>
+                ))}
+                <li className="race_carousel_dividers">Previous Races</li>
+                {completedRaces.map((round, index) => (
+                    <li 
+                        key={index}
+                        className='race_round'
+                        onClick={() => togglePreviousRound(index)}
+                    >
+                        <div 
+                        className={activePreviousRound === index + 1 ? 'active_race_round' : ''}
+                        >
+                        {activePreviousRound === index + 1 ? (
+                            <RaceRound
+                                apiData={returnedApiData}
+                                competitionToShow={round.competition.name}
+                                roundNumber={round.originalIndex}
+                                raceComplete={true}
+                            />
+                        ) : (
+                        <div className='inactive_race_round'>
+                            <p className='inactive_race_round_heading'>
+                                <span className='inactive_race_round_heading_text'>Round </span>
+                                <span className='inactive_race_round_heading_number'>{round.originalIndex}</span>
+                            </p>
+                            <figure className='inactive_race_round_img_cont'>
+                                <img
+                                className='inactive_race_round_img'
+                                src={round.competition.location.country ? circuitFlags[round.competition.location.country] : ''}
+                                alt={round.competition.location.country ? round.competition.location.country + " Flag" : ''}
+                                />
+                            </figure>
+                            <h2 className="inactive_race_round_race_title">
+                                {round.competition.name || 'Race Name Not Available'}
+                            </h2>
+                            <div className="inactive_race_round_chevrons">
+                                <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                            </div>
+                        </div>
+                        )}
+                        </div>
+                    </li>
+                ))}
+                {postponedRaces.length > 0 && (
+                    <>
+                    <li className="race_carousel_dividers">Postponed Races</li>
+                    {postponedRaces.map((round, index) => (
+                        <li 
+                            key={index}
+                            className='race_round'
+                            onClick={() => togglePostponedRound(index)}
+                        >
+                            <div 
+                            className={activePostponedRound === index + 1 ? 'active_race_round' : ''}
+                            >
+                            {activePostponedRound === index + 1 ? (
+                                <RaceRound
+                                    apiData={returnedApiData}
+                                    competitionToShow={round.competition.name}
+                                    roundNumber={round.originalIndex}
+                                />
+                            ) : (
+                            <div className='inactive_race_round'>
+                                <p className='inactive_race_round_heading'>
+                                    <span className='inactive_race_round_heading_text'>Round </span>
+                                    <span className='inactive_race_round_heading_number'>{round.originalIndex}</span>
+                                </p>
+                                <figure className='inactive_race_round_img_cont'>
+                                    <img
+                                    className='inactive_race_round_img'
+                                    src={round.competition.location.country ? circuitFlags[round.competition.location.country] : ''}
+                                    alt={round.competition.location.country ? round.competition.location.country + " Flag" : ''}
+                                    />
+                                </figure>
+                                <h2 className="inactive_race_round_race_title">
+                                    {round.competition.name || 'Race Name Not Available'}
+                                </h2>
+                                <div className="inactive_race_round_chevrons">
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                </div>
+                            </div>
+                            )}
+                            </div>
+                        </li>
+                    ))}
+                    </>
+                )}
+                {cancelledRaces.length > 0 && (
+                    <>
+                    <li className="race_carousel_dividers">Cancelled Races</li>
+                    {cancelledRaces.map((round, index) => (
+                        <li 
+                            key={index}
+                            className='race_round'
+                            onClick={() => toggleCancelledRound(index)}
+                        >
+                            <div 
+                            className={activeCancelledRound === index + 1 ? 'active_race_round' : ''}
+                            >
+                            {activeCancelledRound === index + 1 ? (
+                                <RaceRound
+                                    apiData={returnedApiData}
+                                    competitionToShow={round.competition.name}
+                                    roundNumber={round.originalIndex}
+                                />
+                            ) : (
+                            <div className='inactive_race_round'>
+                                <p className='inactive_race_round_heading'>
+                                    <span className='inactive_race_round_heading_text'>Round </span>
+                                    <span className='inactive_race_round_heading_number'>{round.originalIndex}</span>
+                                </p>
+                                <figure className='inactive_race_round_img_cont'>
+                                    <img
+                                    className='inactive_race_round_img'
+                                    src={round.competition.location.country ? circuitFlags[round.competition.location.country] : ''}
+                                    alt={round.competition.location.country ? round.competition.location.country + " Flag" : ''}
+                                    />
+                                </figure>
+                                <h2 className="inactive_race_round_race_title">
+                                    {round.competition.name || 'Race Name Not Available'}
+                                </h2>
+                                <div className="inactive_race_round_chevrons">
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                    <FontAwesomeIcon icon={faChevronRight} className='inactive_race_round_chevron' />
+                                </div>
+                            </div>
+                            )}
+                            </div>
+                        </li>
+                    ))}
+                    </>
+                )}
+                
             </ul>
         </section>
+        )}
+        </>
     )
 }

@@ -1,6 +1,6 @@
 export const circuitFlags = {
     "Bahrain": "/interface/media/flags/bahrain_flag.svg",
-    "Saudi Arabia": "/interface/media/flags/saudi_flag.png",
+    "Saudi Arabia ": "/interface/media/flags/saudi_flag.png",
     "Australia": "/interface/media/flags/australia_flag.svg",
     "Azerbaijan": "/interface/media/flags/azerbaijan_flag.svg",
     "USA": "/interface/media/flags/usa_flag.svg",
@@ -9,7 +9,7 @@ export const circuitFlags = {
     "Spain": "/interface/media/flags/spain_flag.svg",
     "Canada": "/interface/media/flags/canada_flag.svg",
     "Austria": "/interface/media/flags/austria_flag.svg",
-    "UK": "/interface/media/flags/uk_flag.png",
+    "Great Britain": "/interface/media/flags/uk_flag.png",
     "Hungary": "/interface/media/flags/hungary_flag.svg",
     "Belgium": "/interface/media/flags/belgium_flag.svg",
     "Netherlands": "/interface/media/flags/netherlands_flag.svg",
@@ -18,8 +18,8 @@ export const circuitFlags = {
     "Qatar": "/interface/media/flags/qatar_flag.svg",
     "Mexico": "/interface/media/flags/mexico_flag.svg",
     "Brazil": "/interface/media/flags/brazil_flag.svg",
-    "United States": "/interface/media/flags/usa_flag.svg",
-    "UAE": "/interface/media/flags/uae_flag.svg"
+    "USA": "/interface/media/flags/usa_flag.svg",
+    "Abu Dhabi": "/interface/media/flags/uae_flag.svg"
   };
   
  export const circuitNames = {
