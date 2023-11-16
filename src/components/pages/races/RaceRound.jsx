@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { circuitFlags, circuitTracks } from "../../../data/CircuitInfo";
+import CompleteRaceRounds from "./CompleteRaceRounds";
 import './race_round.css'
 
-export default function RaceRound({ apiData, competitionToShow, roundNumber, raceComplete }) {
-
-    // Get countdown timer to race start from CountdownHook hook located in countdownFunctions.jsx
-    // const { raceCountdown } = CountdownFunction();
+export default function RaceRound({ apiData, competitionToShow, roundNumber, raceComplete, raceCancelled }) {
 
     // Get competition to show
     const competition = apiData.filter(event => event.competition.name === competitionToShow);
@@ -35,17 +33,48 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
         };
     };
 
-    // For races that have completed, retrieve result data
-    // Race results are done by raceID. Can be retrieved at competitionRace.id
-    // Then must send the competitionRace.id to "https://api-formula-1.p.rapidapi.com/rankings/races?race=${competitionRace.id}"
-    // Move useEffect hook from App.jsx to Races.jsx - there's no point in having it there.
+    // Race countdown 
+    const [countdown, setCountdown] = useState('');
 
     useEffect(() => {
-        console.log(competitionRace)
-    }, [competitionRace])
+        const updateCountdown = () => {
+        const now = new Date().getTime();
+        const apiTime = new Date(competitionRace[0].date).getTime();
+        const difference = apiTime - now;
+
+        if (difference > 0) {
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            const countdownText = `${days} <span class="days">days</span>  ${hours} <span class="hours">hours</span>  ${minutes} <span class="minutes">minutes</span>  ${seconds} <span class="seconds">seconds</span>`;
+            setCountdown(countdownText);
+        } else {
+            setCountdown('Race started!');
+        }
+        };
+
+        const intervalId = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(intervalId);
+    }, [competitionRace[0].date]);
+
+    // Show race result when clicked
+    const [showRaceResult, setShowRaceResult] = useState(false);
+
+    const handleShowRaceResult = (event) => {
+        event.stopPropagation();
+        if (showRaceResult) {
+            setShowRaceResult(false);
+        } else {
+            setShowRaceResult(true);
+        }
+    }
+
 
     return (
-        <section className="nextRaceBanner">
+        <section>
             {!competitionRace || !competitionQualifying ? (
                 <div className="submission_processing">
                     <div className="loader"></div>
@@ -69,66 +98,76 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                             </div>
                             {!raceComplete ? (
                                 <>
-                                {competitionSprintRace.length !== 0 ? (
-                                    <ul className="selected_race_round_timings sprint_weekend">
-                                        <li className="selected_race_round_session">
-                                            <span>FP1:</span>
-                                            <span>{formatDateTime(competitionFp1[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionFp1[0].date).formattedTime} GMT</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Qualifying:</span>
-                                            <span>{formatDateTime(competitionQualifying[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionQualifying[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Sprint Shootout:</span>
-                                            <span>{formatDateTime(competitionSprintShootout[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionSprintShootout[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Sprint Race:</span>
-                                            <span>{formatDateTime(competitionSprintRace[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionSprintRace[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Race:</span>
-                                            <span>{formatDateTime(competitionRace[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionRace[0].date).formattedTime}</span>
-                                        </li>
-                                    </ul>
+                                {!raceCancelled ? (
+                                    <>
+                                    {competitionSprintRace.length !== 0 ? (
+                                        <ul className="selected_race_round_timings sprint_weekend">
+                                            <li className="selected_race_round_session">
+                                                <span>FP1:</span>
+                                                <span>{formatDateTime(competitionFp1[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionFp1[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Qualifying:</span>
+                                                <span>{formatDateTime(competitionQualifying[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionQualifying[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Sprint Shootout:</span>
+                                                <span>{formatDateTime(competitionSprintShootout[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionSprintShootout[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Sprint Race:</span>
+                                                <span>{formatDateTime(competitionSprintRace[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionSprintRace[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Race:</span>
+                                                <span>{formatDateTime(competitionRace[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionRace[0].date).formattedTime}</span>
+                                            </li>
+                                        </ul>
+                                    ) : (
+                                        <ul className="selected_race_round_timings">
+                                            <li className="selected_race_round_session">
+                                                <span>FP1:</span>
+                                                <span>{formatDateTime(competitionFp1[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionFp1[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>FP2:</span>
+                                                <span>{formatDateTime(competitionFp2[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionFp2[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>FP3:</span>
+                                                <span>{formatDateTime(competitionFp3[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionFp3[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Qualifying:</span>
+                                                <span>{formatDateTime(competitionQualifying[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionQualifying[0].date).formattedTime}</span>
+                                            </li>
+                                            <li className="selected_race_round_session">
+                                                <span>Race:</span>
+                                                <span>{formatDateTime(competitionRace[0].date).formattedDate}</span>
+                                                <span>{formatDateTime(competitionRace[0].date).formattedTime}</span>
+                                            </li>
+                                        </ul>
+                                    )}
+                                    </>
                                 ) : (
-                                    <ul className="selected_race_round_timings">
-                                        <li className="selected_race_round_session">
-                                            <span>FP1:</span>
-                                            <span>{formatDateTime(competitionFp1[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionFp1[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>FP2:</span>
-                                            <span>{formatDateTime(competitionFp2[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionFp2[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>FP3:</span>
-                                            <span>{formatDateTime(competitionFp3[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionFp3[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Qualifying:</span>
-                                            <span>{formatDateTime(competitionQualifying[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionQualifying[0].date).formattedTime}</span>
-                                        </li>
-                                        <li className="selected_race_round_session">
-                                            <span>Race:</span>
-                                            <span>{formatDateTime(competitionRace[0].date).formattedDate}</span>
-                                            <span>{formatDateTime(competitionRace[0].date).formattedTime}</span>
-                                        </li>
-                                    </ul>
+                                    <h1>Race Cancelled</h1>
                                 )}
+                               
                                 </>
                             ) : (
-                                <h1>Complete</h1>
+                                <CompleteRaceRounds
+                                    raceID={competitionRace[0].id}
+                                    podiumResult={true}
+                                />
                             )}
                             
                         </div>
@@ -139,9 +178,23 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                             </div>
                         </div>
                     </div>
-                    <div className="selected_race_round_bottom_section">
-                        <p>Race Countdown: 00:00:00</p>
-                    </div>
+                    {raceComplete ? (
+                        <div className="selected_race_round_bottom_section race_complete" onClick={handleShowRaceResult}>
+                            <p>See race result</p>
+                            {showRaceResult && (
+                                <div>
+                                    <CompleteRaceRounds 
+                                        raceID={competitionRace[0].id}
+                                        fullResult={true}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="selected_race_round_bottom_section race_upcoming">
+                            <p className="countdown_timer" dangerouslySetInnerHTML={{ __html: countdown }}></p>
+                        </div>
+                    )}
                 </div>
             )}
         </section>

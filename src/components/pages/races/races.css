@@ -1,14 +1,13 @@
 .homepage_loader {
     width:100%;
-    min-height:87vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding:50px;
   }
 .races_carousel {
-    max-height: 87vh;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 }
 .race_carousel_dividers {
     height:50px;
