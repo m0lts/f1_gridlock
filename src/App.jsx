@@ -8,17 +8,56 @@ import ResetPassword from './components/pages/accounts/ResetPassword';
 import { Route, Routes } from 'react-router-dom';
 import Standings from './components/pages/standings/Standings';
 import Information from './components/pages/information/Information';
+import HomePage from './components/HomePage';
 import { useState, useEffect } from 'react';
 
 
 function App() {
+
+  // Get race data for whole season (1 API CALL PER REFRESH)
+
+    // Competition = race weekend
+    // Country = country related
+    // Circuit = track related
+    // Race = actual race
+
+    const [apiRequest, setApiRequest] = useState('races?season=2023&timezone=Europe/London');
+    const [returnedApiData, setReturnedApiData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/externalData/CallAPI', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(apiRequest),
+                });
+            
+                // Receive returned data and set state with data.
+                if (response.ok) {
+                    const responseData = await response.json();
+                    setReturnedApiData(responseData.result.response);
+                    } else {
+                    console.log('failure');
+                    }
+                } catch (error) {
+                console.error('Error submitting form:', error);
+                }
+        }
+
+        fetchData();
+
+    }, [apiRequest])
+
   return (
     <Routes>
-      <Route path='/' element={<NavSystem />}>
+      <Route path='/' element={<HomePage />}>
         <Route 
           index 
-          element={<Races />} />
-        <Route path='predictions' element={<Predictions />} />
+          element={<Races returnedApiData={returnedApiData} />} />
+        <Route path='predictions' element={<Predictions returnedApiData={returnedApiData} />} />
         <Route path='standings' element={<Standings />} />
         <Route path='information' element={<Information />} />
       </Route>

@@ -8,6 +8,7 @@ import './buttons.css'
 // Handle logout
 function handleLogout() {
     sessionStorage.removeItem('Username');
+    sessionStorage.removeItem('UserID');
     window.location.reload();
 }
 
@@ -15,12 +16,12 @@ function handleLogout() {
 function Icon({isLoggedIn}) {
     if (isLoggedIn) {
         return <span onClick={handleLogout}>
-            <FontAwesomeIcon icon={faUser} /> Log Out
+                Log Out
             </span>;
     }
     return <span>
         <Link to='/login' className="linkBtns">
-            <FontAwesomeIcon icon={faUser} /> Log In
+            Log In
         </Link>
         </span>;
 }
@@ -33,7 +34,7 @@ function SignupIcon({isLoggedIn}) {
     }
     return (<span>
         <Link to='/signup' className="linkBtns">
-            <FontAwesomeIcon icon={faArrowRightToBracket} /> Sign Up
+            Sign Up
         </Link>
         </span>);
 }

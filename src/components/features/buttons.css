@@ -3,38 +3,33 @@
     font-family: var(--titillium);
     border:none;
     color:var(--white);
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-    padding:10px;
+    padding:5px 10px;
   }
   .btn:hover,
   .btn:active {
-    opacity: 0.9;
-  }
-  .btn:active {
-    border: 1px solid var(--white);
-    opacity: 1;
+    color: var(--medium-grey);
   }
   .hideSignUpBtn {
     display: none;
   }
   .signUpBtn {
     background-color: var(--red);
-    border: 1px solid var(--light-grey);
-    color:var(--black);
+    color:var(--white);
     font-size: 1rem;
   }
-  .signUpBtn:active {
-    border: 1px solid var(--black);
+  .signUpBtn:hover {
+    opacity: 0.8;
   }
-  .signUpBtnTxt {
-    margin-left: 5px;
-  }
+
   
   .loginBtn {
-    background-color: var(--black);
-    border:1px solid var(--black);
     font-size: 1rem;
+    background-color: var(--black);
+  }
+  .loginBtn:hover {
+    color: var(--medium-grey);
   }
   
   .submit_button {

@@ -80,7 +80,7 @@ export default function SignUp() {
             // Handle relative responses and edit modal message.
             if (response.ok) {
                 // Redirect user to login page if sign up successful
-                navigate('/');
+                navigate('/login');
               } else if (response.status === 400) {
                 // Email already taken
                 setEmailError('* Email already in use.');

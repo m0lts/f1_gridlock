@@ -1,34 +1,43 @@
-import { sql } from '@vercel/postgres';
-import React from 'react';
-import { NextRaceInformation } from '../../src/hooks/ergastAPIQueries'
- 
+import { MongoClient } from "mongodb";
+import bcrypt from 'bcrypt';
+
+const uri = process.env.MONGODB_URI;
+const options = {};
+
+if (!process.env.MONGODB_URI) {
+    throw new Error("Please add your Mongo URI to env.local")
+}
+
 export default async function handler(request, response) {
+    let mongoClient;
 
-  const { round } = NextRaceInformation();
+    try {
+        mongoClient = await (new MongoClient(uri, options)).connect();
+        console.log("Just Connected!");
 
-  try {
-    const queryParams = request.query;
+        const db = mongoClient.db("gridlock");
+        const dbCollection = db.collection("predictions");
 
-    const username = queryParams.username;
-    const p1 = queryParams.P1;
-    const p2 = queryParams.P2;
-    const p3 = queryParams.P3;
-    const p4 = queryParams.P4;
-    const p5 = queryParams.P5;
-    const p6 = queryParams.P6;
-    const p7 = queryParams.P7;
-    const p8 = queryParams.P8;
-    const p9 = queryParams.P9;
-    const p10 = queryParams.P10;
-    const roundNumber = round;
+        if (request.method === "POST") {
+          const userPrediction = request.body;
 
-    if (!username || !p1 || !p2 || !p3 || !p4 || !p5 || !p6 ||!p7 || !p8 || !p9 || !p10 ) throw new Error('All inputs required');
+          await dbCollection.insertOne(userPrediction);
 
-    await sql`INSERT INTO gridlock_predictions (Username, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, Round) VALUES (${username}, ${p1}, ${p2}, ${p3}, ${p4}, ${p5}, ${p6}, ${p7}, ${p8}, ${p9}, ${p10}, ${roundNumber});`;
-  
-    return response.status(200).json({ message: "Prediction submitted successfully." });
-} catch (error) {
-    return response.status(500).json({ error: error.message });
-  }
+          response.status(201).json({ message: 'Prediction added successfully' });
+        
 
+        } else {
+            response.status(405).json({ error: "Method Not Allowed" });
+        }
+
+
+    } catch (error) {
+        console.error(error);
+        response.status(500).json(error);
+    } finally {
+        if (mongoClient) {
+            await mongoClient.close();
+            console.log("MongoDB connection closed.");
+        }
+    }
 }

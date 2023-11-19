@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './races.css'
 
-export default function Races() {
+export default function Races({ returnedApiData }) {
 
     // Assign rounds to activeRound if clicked
     const [activeUpcomingRound, setActiveUpcomingRound] = useState();
@@ -42,42 +42,6 @@ export default function Races() {
         }
     };
 
-    // Get race data for whole season (1 API CALL PER REFRESH)
-
-    // Competition = race weekend
-    // Country = country related
-    // Circuit = track related
-    // Race = actual race
-
-    const [apiRequest, setApiRequest] = useState('races?season=2023&timezone=Europe/London');
-    const [returnedApiData, setReturnedApiData] = useState([])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/externalData/CallAPI', {
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(apiRequest),
-                });
-            
-                // Receive returned data and set state with data.
-                if (response.ok) {
-                    const responseData = await response.json();
-                    setReturnedApiData(responseData.result.response);
-                    } else {
-                    console.log('failure');
-                    }
-                } catch (error) {
-                console.error('Error submitting form:', error);
-                }
-        }
-
-        fetchData();
-
-    }, [apiRequest])
 
     // Sort data into correct array
     const competitionRaces = returnedApiData.filter(event => event.type === 'Race');

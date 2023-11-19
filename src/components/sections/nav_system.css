@@ -2,14 +2,13 @@
 /* Desktop */
 .nav_tabs_container {
     width:100%;
-    background-color: var(--light-grey);
 }
 .nav_tabs_list {
     padding:0 25px;
     width:100%;
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap:25px;
 }
 .nav_tab {
     list-style: none;
@@ -19,16 +18,15 @@
     border-radius: 10px 10px 0 0;
     transition: all 150ms linear;
     text-decoration: none;
-    color: var(--dark-grey);
+    color: var(--white);
 }
 .nav_tab:hover {
-    background-color: var(--trans-white);
     cursor: pointer;
     transition: all 150ms linear;
+    color: var(--medium-grey);
 }
 .nav_tab.active {
-    background-color: var(--dark-grey);
-    color: var(--white);
+    color: var(--red);
     font-weight: 600;
     cursor:auto;
     transition: all 150ms linear;

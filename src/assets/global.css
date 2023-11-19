@@ -1,6 +1,7 @@
 /* Page setup and common variables */
 
 @import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
 *,
 *::after,
@@ -12,12 +13,13 @@
 
 :root {
   font-family: "Titillium Web", sans-serif;
+  --number-font: "Black Ops One", display;
   --black: #2b2b2b;
   --white: #ffffff;
   --dark-grey: #404040;
   --medium-grey: #4b4b4b;
   --light-grey: #EBEBEB;
-  --red: #ff2929;
+  --red: #FF5757;
   --green: #00BF36;
   --trans-white:#ffffff4e;
   --titillium: "Titillium Web", sans-serif;
@@ -50,8 +52,8 @@ h4 {
 
 /* Universal components */
 .loader {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid var(--red);
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--red);
   border-radius: 50%;
   width: 30px;
   height: 30px;

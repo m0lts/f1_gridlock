@@ -75,7 +75,7 @@ export const circuitFlags = {
   };
 
   export const circuitInfo = {
-    "Bahrain": {
+    "Bahrain International Circuit": {
       'traction': 4,
       'track evolution': 4,
       'braking': 4,
@@ -83,7 +83,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 3
     },
-    "Saudi Arabia": {
+    "Jeddah Corniche Circuit": {
       'traction': 2,
       'track evolution': 4,
       'braking': 2,
@@ -91,7 +91,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 2
     },
-    "Australia": {
+    "Albert Park Circuit": {
       'traction': 2,
       'track evolution': 4,
       'braking': 2,
@@ -99,7 +99,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 3
     },
-    "Azerbaijan": {
+    "Baku City Circuit": {
       'traction': 5,
       'track evolution': 5,
       'braking': 4,
@@ -107,7 +107,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 1
     },
-    "Miami": {
+    "Miami International Autodrome": {
       'traction': 3,
       'track evolution': 5,
       'braking': 3,
@@ -115,7 +115,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 2
     },
-    "Imola": {
+    "Autodromo Enzo e Dino Ferrari": {
       'traction': 2,
       'track evolution': 3,
       'braking': 3,
@@ -123,7 +123,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 3
     },
-    "Monaco": {
+    "Circuit de Monaco": {
       'traction': 5,
       'track evolution': 5,
       'braking': 2,
@@ -131,7 +131,7 @@ export const circuitFlags = {
       'tyre stress': 1,
       'downforce': 5
     },
-    "Spain": {
+    "Circuit de Barcelona-Catalunya": {
       'traction': 3,
       'track evolution': 3,
       'braking': 3,
@@ -139,7 +139,7 @@ export const circuitFlags = {
       'tyre stress': 5,
       'downforce': 4
     },
-    "Canada": {
+    "Circuit Gilles-Villeneuve": {
       'traction': 5,
       'track evolution': 5,
       'braking': 5,
@@ -147,7 +147,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 1
     },
-    "Austria": {
+    "Red Bull Ring": {
       'traction': 2,
       'track evolution': 3,
       'braking': 3,
@@ -155,7 +155,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 3
     },
-    "Great Britain": {
+    "Silverstone Circuit": {
       'traction': 3,
       'track evolution': 2,
       'braking': 2,
@@ -163,7 +163,7 @@ export const circuitFlags = {
       'tyre stress': 5,
       'downforce': 4
     },
-    "Hungary": {
+    "Hungaroring": {
       'traction': 4,
       'track evolution': 4,
       'braking': 3,
@@ -171,7 +171,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 5
     },
-    "Belgium": {
+    "Circuit de Spa-Francorchamps": {
       'traction': 4,
       'track evolution': 3,
       'braking': 4,
@@ -179,7 +179,7 @@ export const circuitFlags = {
       'tyre stress': 5,
       'downforce': 2
     },
-    "Monza": {
+    "Autodromo Nazionale Monza": {
       'traction': 3,
       'track evolution': 4,
       'braking': 4,
@@ -187,7 +187,7 @@ export const circuitFlags = {
       'tyre stress': 3,
       'downforce': 1
     },
-    "Netherlands": {
+    "Circuit Zandvoort": {
       'traction': 4,
       'track evolution': 4,
       'braking': 3,
@@ -195,7 +195,7 @@ export const circuitFlags = {
       'tyre stress': 5,
       'downforce': 4
     },
-    "Singapore": {
+    "Marina Bay Street Circuit": {
       'traction': 1,
       'track evolution': 1,
       'braking': 1,
@@ -203,25 +203,60 @@ export const circuitFlags = {
       'tyre stress': 1,
       'downforce': 1
     },
-    "Japan": {
-
+    "Suzuka International Racing Course": {
+      'traction': 3,
+      'track evolution': 3,
+      'braking': 2,
+      'asphalt abrasion': 4,
+      'tyre stress': 5,
+      'downforce': 4
     },
-    "Qatar": {
-
+    "Losail International Circuit": {
+      'traction': 3,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 3,
+      'tyre stress': 5,
+      'downforce': 4
     },
-    "Mexico": {
-      
+    "Autódromo Hermanos Rodríguez": {
+      'traction': 3,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 2,
+      'tyre stress': 2,
+      'downforce': 5
     },
-    "Brazil": {
-
+    "Autódromo José Carlos Pace": {
+      'traction': 3,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 4,
+      'tyre stress': 3,
+      'downforce': 4
     },
-    "United States": {
-
+    "Circuit of The Americas": {
+      'traction': 4,
+      'track evolution': 4,
+      'braking': 3,
+      'asphalt abrasion': 4,
+      'tyre stress': 4,
+      'downforce': 4
     },
-    "Las Vegas": {
-
+    "Las Vegas Strip Circuit": {
+      'traction': 2,
+      'track evolution': 5,
+      'braking': 3,
+      'asphalt abrasion': 3,
+      'tyre stress': 3,
+      'downforce': 1
     },
-    "Abu Dhabi": {
-
+    "Yas Marina Circuit": {
+      'traction': 4,
+      'track evolution': 4,
+      'braking': 4,
+      'asphalt abrasion': 3,
+      'tyre stress': 3,
+      'downforce': 3
     }
   };

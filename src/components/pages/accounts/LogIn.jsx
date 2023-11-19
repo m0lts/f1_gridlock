@@ -64,12 +64,12 @@ export default function LogIn() {
       
             // Handle relative responses and edit modal message.
             if (response.ok) {
-
-                // EDIT WITH COOKIES
                 const responseData = await response.json();
-                const username = responseData.username;
+                const username = responseData.userRecord.username;
+                const userID = responseData.userRecord._id;
 
                 sessionStorage.setItem('Username', username);
+                sessionStorage.setItem('UserID', userID);
 
                 // Redirect user to login page if sign up successful
                 navigate('/');
