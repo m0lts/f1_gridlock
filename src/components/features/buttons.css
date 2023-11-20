@@ -5,11 +5,17 @@
     color:var(--white);
     border-radius: 15px;
     cursor: pointer;
-    padding:5px 10px;
+    padding:10px;
+    background-color: var(--red);
+    width:fit-content;
+    margin: 0 auto;
+    font-weight: 600;
+    transition: all 200ms linear;
   }
   .btn:hover,
   .btn:active {
-    color: var(--medium-grey);
+    background-color: var(--medium-grey);
+    transition: all 200ms linear;
   }
   .hideSignUpBtn {
     display: none;

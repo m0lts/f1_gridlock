@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faListCheck, faRankingStar, faCircleInfo, faCircle } from '@fortawesome/free-solid-svg-icons';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Header from './Header';
 import './nav_system.css'
 
 export default function NavSystem() {
 
-    const [selectedTab, setSelectedTab] = useState('Races');
+    const location = useLocation();
+
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+    // const [selectedTab, setSelectedTab] = useState('Races');
 
     const handleTabClick = (tabName) => {
         setSelectedTab(tabName);
@@ -32,67 +34,61 @@ export default function NavSystem() {
         {isMobile ? (
                 <nav className='nav_tabs_container'>
                 <ul className='nav_tabs_list'>
-                        <Link 
-                        to={'/'}
-                        className={`nav_tab ${selectedTab === 'Races' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Races')}
+                        <NavLink 
+                            exact={true}
+                            to={'/'}
+                            className={`nav_tab ${location.pathname === '/' ? 'active' : ''}`} 
                         >
                             <FontAwesomeIcon icon={faCalendar} className='nav_tab_icon' />
-                        </Link>
-                        <Link 
-                        to={'/predictions'}
-                        className={`nav_tab ${selectedTab === 'Predictions' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Predictions')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/predictions'}
+                            className={`nav_tab ${location.pathname === '/predictions' ? 'active' : ''}`} 
                         >
                             <FontAwesomeIcon icon={faListCheck} className='nav_tab_icon' />
-                        </Link>
-                        <Link 
-                        to={'/standings'}
-                        className={`nav_tab ${selectedTab === 'Standings' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Standings')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/standings'}
+                            className={`nav_tab ${location.pathname === '/standings' ? 'active' : ''}`} 
                         >
                             <FontAwesomeIcon icon={faRankingStar} className='nav_tab_icon' />
-                        </Link>
-                        <Link 
-                        to={'/information'}
-                        className={`nav_tab ${selectedTab === 'Information' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Information')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/information'}
+                            className={`nav_tab ${location.pathname === '/information' ? 'active' : ''}`} 
                         >
                             <FontAwesomeIcon icon={faCircleInfo} className='nav_tab_icon' />
-                        </Link>
+                        </NavLink>
                     </ul>
                 </nav>
         ) : (
                 <nav className='nav_tabs_container'>
                     <ul className='nav_tabs_list'>
-                        <Link 
-                        to={'/'}
-                        className={`nav_tab ${selectedTab === 'Races' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Races')}
+                        <NavLink 
+                            exact={true}
+                            to={'/'}
+                            className={`nav_tab ${location.pathname === '/' ? 'active' : ''}`} 
                         >
                             Races
-                        </Link>
-                        <Link 
-                        to={'/predictions'}
-                        className={`nav_tab ${selectedTab === 'Predictions' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Predictions')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/predictions'}
+                            className={`nav_tab ${location.pathname === '/predictions' ? 'active' : ''}`} 
                         >
                             Predictions
-                        </Link>
-                        <Link 
-                        to={'/standings'}
-                        className={`nav_tab ${selectedTab === 'Standings' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Standings')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/standings'}
+                            className={`nav_tab ${location.pathname === '/standings' ? 'active' : ''}`} 
                         >
                             Standings
-                        </Link>
-                        <Link 
-                        to={'/information'}
-                        className={`nav_tab ${selectedTab === 'Information' ? 'active' : ''}`} 
-                        onClick={() => handleTabClick('Information')}
+                        </NavLink>
+                        <NavLink 
+                            to={'/information'}
+                            className={`nav_tab ${location.pathname === '/information' ? 'active' : ''}`} 
                         >
                             Information
-                        </Link>
+                        </NavLink>
                     </ul>
                 </nav>
         )}

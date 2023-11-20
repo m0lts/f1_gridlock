@@ -1,9 +1,9 @@
 .predictions_page_placeholder {
     color: var(--black);
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap:15px;
+    margin-bottom:25px;
 }
 .predictions_page_placeholder p {
     text-align: center;
@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     color: var(--black);
+    gap:20px;
 }
 .selected_driver_container {
     padding: 10px;
@@ -23,7 +24,6 @@
     width:100%;
     border: 1px solid var(--black);
     border-radius: 5px;
-    margin-bottom: 10px;
 }
 .selected_driver_container:hover {
     background-color: var(--light-grey);
@@ -33,6 +33,10 @@
 }
 .selected_driver_container:active {
     background-color: var(--medium-grey);
+}
+.selected_driver_container.db_prediction:hover {
+    cursor: auto;
+    background-color: var(--white);
 }
 .selected_driver_position {
     font-weight: 800;
@@ -58,27 +62,15 @@
     display: flex;
     justify-content: center;
 }
-.submit_prediction_btn {
-    border:none;
-    background-color: var(--red);
-    padding:10px;
-    color: var(--white);
-    font-family: var(--font-family);
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 200ms linear;
-}
-.submit_prediction_btn:hover {
-    background-color: var(--medium-grey);
-    transition: all 200ms linear;
-}
 .submit_prediction_btn:active {
     box-shadow: inset 5px 5px 5px var(--black);
 }
 .predictions_page_submission_success {
-    color: var(--black);
+    background-color: var(--medium-grey);
+    color: var(--white);
     text-align: center;
     margin-top:15px;
-    
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding:10px 0;
 }

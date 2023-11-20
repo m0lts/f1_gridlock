@@ -7,16 +7,33 @@
     color: var(--white);
     padding-bottom: 5px;
 }
-.predictions_page_flex {
+.predictions_page {
+    position: relative;
+}
+.predictions_page.grid {
     width:100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     min-height: 100vh;
     height:fit-content;
 }
+.predictions_page.flex {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 .race_prediction {
     background-color: var(--white);
     padding:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.race_prediction.loading {
+    justify-content: center;
+    align-items: center;
 }
 .predictions_page_section {
     width:100%;
@@ -29,3 +46,27 @@
     align-items: center;
     justify-content: center;
 }
+.countdown_container {
+    background-color: var(--green);
+    text-align: center;
+    padding:10px 0;
+    color: var(--white);
+}
+.qualifying_started_overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:25px;
+    padding-top: 50px;
+    color: var(--white);
+}
+.error_icon {
+    color: var(--red);
+    font-size: 2.5rem;
+}
+

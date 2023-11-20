@@ -21,6 +21,7 @@ export default async function handler(request, response) {
             const dataReceived = request.body;
             const userID = dataReceived.userID;
             const competition = dataReceived.competition;
+            const timeNow = dataReceived.timeNow;
 
             const dbPrediction = await dbCollection.findOne({ competition, userID })
 

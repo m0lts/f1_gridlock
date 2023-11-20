@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb";
-import bcrypt from 'bcrypt';
 
 const uri = process.env.MONGODB_URI;
 const options = {};
@@ -19,12 +18,25 @@ export default async function handler(request, response) {
         const dbCollection = db.collection("predictions");
 
         if (request.method === "POST") {
-          const userPrediction = request.body;
+            const dataReceived = request.body;
+            const userPrediction = dataReceived.driverIDs;
+            const userID = dataReceived.userID;
+            const competition = dataReceived.competition;
 
-          await dbCollection.insertOne(userPrediction);
+            const dbPrediction = await dbCollection.findOne({ competition, userID })
 
-          response.status(201).json({ message: 'Prediction added successfully' });
-        
+            if (dbPrediction) {
+                await dbCollection.updateOne(
+                    { competition, userID },
+                    { $set: { driverIDs: userPrediction } }
+                );
+                response.status(200).json({ message: 'Prediction updated successfully' });
+            } else {
+                await dbCollection.insertOne(dataReceived);
+                response.status(201).json({ message: 'Prediction added successfully' });
+            }
+
+            
 
         } else {
             response.status(405).json({ error: "Method Not Allowed" });
