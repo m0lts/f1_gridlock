@@ -61,6 +61,8 @@ export default function Races({ returnedApiData }) {
     .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
     .filter(event => event.status === 'Cancelled');
 
+    console.log(completedRaces);
+
 
     return (
         <>

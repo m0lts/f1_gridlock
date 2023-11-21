@@ -5,11 +5,23 @@ import './predictions.css'
 import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom"
 
 export default function Predictions({ returnedApiData }) {
 
     const [nextRace, setNextRace] = useState();
     const [qualifyingStartTime, setQualifyingStartTime] = useState();
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const userID = sessionStorage.getItem('UserID');
+        if (userID) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, [])
 
 
     // Get Drivers for season
@@ -106,7 +118,6 @@ export default function Predictions({ returnedApiData }) {
         }
     }, [qualifyingStartTime]);
 
-
     return (
         <div className="predictions_page">
             {nextRace && (
@@ -120,9 +131,14 @@ export default function Predictions({ returnedApiData }) {
                         <div className="loader"></div>
                 ) : (
                     qualifyingStarted ? (
-                        <div className="qualifying_started_overlay">
+                        <div className="predictions_overlay">
                             <FontAwesomeIcon icon={faCircleExclamation} className="error_icon" />
-                            <p>You missed this week's predictions - qualifying has started.</p>
+                            <p>Qualifying has started, predictions are now closed.</p>
+                        </div>
+                    ) : !isLoggedIn ? (
+                        <div className="predictions_overlay">
+                            <FontAwesomeIcon icon={faCircleExclamation} className="error_icon" />
+                            <p>You must log in to make a prediction. <Link to={'/login'} className="link_to_login"> Log in here.</Link></p>
                         </div>
                     ) : (
                         <>

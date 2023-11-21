@@ -52,7 +52,7 @@
     padding:10px 0;
     color: var(--white);
 }
-.qualifying_started_overlay {
+.predictions_overlay {
     position:absolute;
     top:0;
     left:0;
@@ -69,4 +69,6 @@
     color: var(--red);
     font-size: 2.5rem;
 }
-
+.link_to_login {
+    color: var(--white);
+}

@@ -35,7 +35,6 @@ export default function NavSystem() {
                 <nav className='nav_tabs_container'>
                 <ul className='nav_tabs_list'>
                         <NavLink 
-                            exact={true}
                             to={'/'}
                             className={`nav_tab ${location.pathname === '/' ? 'active' : ''}`} 
                         >
@@ -65,7 +64,6 @@ export default function NavSystem() {
                 <nav className='nav_tabs_container'>
                     <ul className='nav_tabs_list'>
                         <NavLink 
-                            exact={true}
                             to={'/'}
                             className={`nav_tab ${location.pathname === '/' ? 'active' : ''}`} 
                         >
