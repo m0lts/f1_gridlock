@@ -19,14 +19,21 @@ header {
   width:25px;
   height:25px;
 }
-.logo_text {
-  color: var(--red);
-  font-size: 1.5rem;
-  text-transform: lowercase;
-}
 .headerRightFlex {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap:25px;
+}
+/* Mobile */
+@media screen and (max-width:768px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .header_top_flex {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }

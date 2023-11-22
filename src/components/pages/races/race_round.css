@@ -1,89 +1,6 @@
-/* Next Race Banner */
-/* .nextRaceBanner {
-    color:var(--white);
-    padding:2.5% 5%;
-  }
-  .heroTop {
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .flagFill {
-    width:50px;
-    height:50px;
-    border-radius: 10px;
-  }
-  .bannerHeroMain {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:25px 0;
-    height: 100%;
-  }
-  .heroMainLeft {
-    width:50%;
-  }
-  .grandPrixName {
-    padding:5px 0;
-    font-size: 1.5rem;
-  }
-  .timerBox {
-    border-top:5px solid var(--green);
-    border-right: 5px solid var(--green);
-    border-radius: 0 50px 0 0;
-    width:75%;
-    margin-top: 50px;
-    padding:10px 0;
-  }
-  .timerTitle {
-    text-transform: uppercase;
-  }
-  .timer {
-    text-align: center;
-  }
-  .heroMainRight {
-    width:50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap:25px;
-    background-color: var(--trans-white);
-    border-radius: 25px;
-    padding: 25px;
-  }
-  .raceName,
-  .grandPrixName {
-    font-family: var(--titillium);
-  }
-  .raceName {
-    text-align: center;
-  }
-  .circuitImg {
-    width:100%;
-  }
-  .circuitCredit {
-    font-size: 0.75rem;
-  }
-
-  @media screen and (max-width:1100px) {
-    .heroMainLeft {
-      width:100%;
-    }
-  }
-  @media screen and (max-width:767px) {
-    .heroMainRight {
-      display: none;
-    }
-    .timerBox {
-      width:100%;
-    }
-  } */
-
 .selected_race_round {
   position: relative;
-  height:500px;
+  height:fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -134,18 +51,26 @@
 }
 
 .selected_race_round_timings {
-  background-color: var(--white);
-  color:var(--black);
+  border:1px solid var(--white);
+  background-color: var(--dark-grey);
+  box-shadow: 1px 1px 10px var(--light-grey);
   border-radius: 15px;
-  box-shadow: inset 2px 2px 10px 0 rgba(255, 225, 1, 0.5);
   margin:25px 0;
   list-style: none;
   padding:25px;
 }
 .selected_race_round_session {
   display: flex;
-  justify-content: space-between;
-  gap:25px;
+  justify-content: space-evenly;
+}
+.selected_race_round_session_title {
+  font-weight: 600;
+}
+.selected_race_round_session_date {
+  font-weight: 300;
+}
+.selected_race_round_session_time {
+  font-weight: 700;
 }
 
 .selected_race_round_middle_right {
@@ -218,4 +143,20 @@
 .seconds {
   font-weight: 200;
   font-size: 1rem;
+}
+
+@media screen and (max-width:768px) {
+  .selected_race_round_middle_section {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding:15px;
+      width:100%;
+  }
+  .selected_race_round_middle_left {
+    width: 90%;
+  }
+  .selected_race_round_middle_right {
+    width: 90%;
+  }
 }

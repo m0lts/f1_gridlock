@@ -48,6 +48,7 @@
     align-items: center;
     justify-content: center;
     border-right:1px solid var(--light-grey);
+    min-width: 75px;
 }
 .inactive_race_round_heading_text {
     font-weight: 400;
@@ -72,4 +73,20 @@
 .inactive_race_round_chevrons {
     margin-left: auto;
     font-size: 10rem;
+}
+
+@media screen and (max-width:768px) {
+    .race_carousel_dividers {
+        height:25px;
+        font-size: 2.5rem;
+    }
+    .inactive_race_round {
+        padding-left:10px;
+    }
+    .inactive_race_round_race_title {
+        font-size: 1rem;
+    }
+    .inactive_race_round_chevrons {
+        display: none;
+    }
 }

@@ -69,6 +69,14 @@ h4 {
 /* ****** */
 /* ****** */
 
+/* Logo */
+.logo_text {
+  color: var(--red);
+  font-size: 1.5rem;
+  text-transform: lowercase;
+  text-decoration: none;
+}
+
 
 .appBackground {
   background-color: var(--dark-grey);
@@ -97,6 +105,13 @@ h4 {
     width:250px;
     margin-bottom:25px;
     background: none;
+}
+.gateway_page_logo_link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:10px;
 }
 .gateway_page_logo {
     width:100%;

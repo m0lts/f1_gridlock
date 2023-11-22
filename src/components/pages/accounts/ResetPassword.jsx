@@ -78,8 +78,9 @@ export default function ResetPassword() {
     return (
         <section className="gateway_page_body">
             <header className="gateway_page_header">
-                <Link to="/">
-                    <img src="/src/assets/interface/logos/logo_whitetext.svg" alt="Gridlock Logo" className="gateway_page_logo" />
+                <Link to="/" className="gateway_page_logo_link">
+                    <img src='src/assets/interface/logos/logo_notext_vector.svg' alt="GridLock Logo" className="logo_img" />
+                    <h1 className="logo_text">gridlock</h1>
                 </Link>
             </header>
             <main className="gateway_page_main">

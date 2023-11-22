@@ -60,3 +60,10 @@
 .table_row {
     background-color: var(--dark-grey);
 }
+
+@media screen and (max-width:768px) {
+    .standings_table {
+        width:90%;
+        padding:5px;
+    }
+}

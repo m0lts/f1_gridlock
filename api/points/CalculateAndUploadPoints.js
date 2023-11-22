@@ -83,17 +83,22 @@ export default async function handler(request, response) {
         
             const existingUser = await standingsCollection.findOne({ userID });
         
-            // ADD RACE ID TO SPECIFIC POINTS, SO THAT I CAN ADD A CONDITIONAL THAT CHECKS WHETHER THE POINTS FOR A RACE HAVE ALREADY BEEN ASSIGNED, AND IF THEY HAVE PREVENT DUPLICATES
             if (!existingUser) {
                 await standingsCollection.insertOne({
                     userID,
-                    points: [ points ]
+                    points: [{ competition: closestRace, points }],
+                    totalPoints: points,
                 });
             } else {
-                await standingsCollection.findOneAndUpdate(
-                    { userID },
-                    { $push: { points: points } }
-                );
+                const existingCompetitionPoints = existingUser.points.find(point => point.competition === closestRace);
+
+                if (!existingCompetitionPoints) {
+                    await standingsCollection.findOneAndUpdate(
+                        { userID },
+                        { $push: { points: { competition: closestRace, points } } },
+                        { $inc: { totalPoints: points } }
+                    );
+                }
             }
         }
 

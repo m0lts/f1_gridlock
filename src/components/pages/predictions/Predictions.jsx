@@ -60,7 +60,7 @@ export default function Predictions({ returnedApiData }) {
         setNextRace(scheduledRaces[0]);
 
         // Set qualifying start time
-        const competitionQualifying = returnedApiData.filter(event => event.type = 'Qualifying');
+        const competitionQualifying = returnedApiData.filter(event => event.type === '1st Qualifying');
         const scheduledQualifying = competitionQualifying
         .map((event, index) => ({ ...event, originalIndex: index + 1 })) // Adding originalIndex property so that round number is correct
         .filter(event => event.status === 'Scheduled');
@@ -68,6 +68,8 @@ export default function Predictions({ returnedApiData }) {
         setQualifyingStartTime(nextQualifying);
 
     }, [returnedApiData])
+
+
 
 
     // Update drivers state with array including only seated drivers
@@ -118,6 +120,7 @@ export default function Predictions({ returnedApiData }) {
         }
     }, [qualifyingStartTime]);
 
+
     return (
         <div className="predictions_page">
             {nextRace && (
@@ -142,28 +145,28 @@ export default function Predictions({ returnedApiData }) {
                         </div>
                     ) : (
                         <>
-                        <Drivers 
-                            className='predictions_page_section' 
-                            drivers={drivers}
-                            setSelectedDrivers={setSelectedDrivers}
-                            setDrivers={setDrivers}
-                            selectedDrivers={selectedDrivers}
-                            raceInfo={nextRace}
-                        />
-                        <RacePrediction 
-                            className='predictions_page_section'
-                            selectedDrivers={selectedDrivers}
-                            setDrivers={setDrivers}
-                            setSelectedDrivers={setSelectedDrivers}
-                            raceInfo={nextRace}
-                            driverInfo={driverData}
-                            drivers={drivers}
-                            qualifyingStarted={qualifyingStarted}
-                        />
-                        <ExtraPredictionInfo 
-                            className='predictions_page_section' 
-                            raceInfo={nextRace}
-                        />
+                            <RacePrediction 
+                                className='predictions_page_section'
+                                selectedDrivers={selectedDrivers}
+                                setDrivers={setDrivers}
+                                setSelectedDrivers={setSelectedDrivers}
+                                raceInfo={nextRace}
+                                driverInfo={driverData}
+                                drivers={drivers}
+                                qualifyingStarted={qualifyingStarted}
+                            />
+                            <Drivers 
+                                className='predictions_page_section' 
+                                drivers={drivers}
+                                setSelectedDrivers={setSelectedDrivers}
+                                setDrivers={setDrivers}
+                                selectedDrivers={selectedDrivers}
+                                raceInfo={nextRace}
+                            />
+                            <ExtraPredictionInfo 
+                                className='predictions_page_section' 
+                                raceInfo={nextRace}
+                            />
                     </>
                     )
                 )}

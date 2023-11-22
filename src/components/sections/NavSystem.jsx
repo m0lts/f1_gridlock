@@ -11,11 +11,6 @@ export default function NavSystem() {
     const location = useLocation();
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
-    // const [selectedTab, setSelectedTab] = useState('Races');
-
-    const handleTabClick = (tabName) => {
-        setSelectedTab(tabName);
-    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -32,7 +27,7 @@ export default function NavSystem() {
     return (
         <>
         {isMobile ? (
-                <nav className='nav_tabs_container'>
+                <nav className='nav_tabs_container mobile'>
                 <ul className='nav_tabs_list'>
                         <NavLink 
                             to={'/'}

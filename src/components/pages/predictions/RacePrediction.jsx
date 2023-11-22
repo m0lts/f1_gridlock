@@ -123,46 +123,6 @@ export default function RacePrediction({ selectedDrivers, setDrivers, setSelecte
         setDrivers(updatedUnselectedDrivers);
     }
 
-    // // If qualifying has started, send the user's most recent prediction to db for this race
-    // useEffect(() => {
-
-    //     if (!dbPrediction && qualifyingStarted)
-
-    //     const queryUserPreviousPrediction = async () => {
-
-    //     try {
-    //         const raceID = raceInfo.id;
-    //         const timeNow = new Date();
-    //         const payload = {
-    //             userID: userID,
-    //             timeNow: timeNow,
-    //             competition: raceID,
-    //         };
-
-    //         const response = await fetch('/api/predictions/QueryPreviousPrediction', {
-    //           method: 'POST',
-    //           headers: {
-    //             'Content-Type': 'application/json',
-    //           },
-    //           body: JSON.stringify(payload),
-    //         });
-
-    //         if (response.ok) {
-    //             // setPredictionSending(false);
-    //             // setPredictionSubmitted(true);
-    //         }
-      
-    //       } catch (error) {
-    //         console.error('Error submitting form:', error);
-    //       }
-    //     }
-
-    //     queryUserPreviousPrediction();
-
-    // }, [qualifyingStarted])
-
-
-
     return (
         <div className={`predictions_page_section race_prediction ${!dbPredictionReceived ? 'loading' : ''}`}>
             {!dbPredictionReceived ? (

@@ -1,16 +1,35 @@
+import { useEffect, useState } from 'react';
 import './standings.css'
 
 export default function Standings() {
-    const data = [
-        { position: 1, username: 'User1', points: 100 },
-        { position: 2, username: 'User2', points: 90 },
-        { position: 3, username: 'User3', points: 80 },
-        { position: 4, username: 'User4', points: 70 },
-      ];
 
+    const [points, setPoints] = useState([]);
+    
+    useEffect(() => {
+        const fetchUsersPoints = async () => {
+            try {
+                const response = await fetch('/api/points/GetPoints.js');
+                if (response.ok) {
+                    const data = await response.json();
+                    const filteredData = data.usersPoints;
+                    setPoints(filteredData);
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchUsersPoints();
+    }, [])
+
+
+
+    console.log(points);
     return (
         <section className="standings_page">
             <h1>Standings</h1>
+            {points ? (
             <table className='standings_table'>
                 <thead className='standings_table_head'>
                     <tr>
@@ -20,15 +39,19 @@ export default function Standings() {
                     </tr>
                 </thead>
                 <tbody className='standings_table_body'>
-                    {data.map((row, index) => (
-                    <tr key={index} className='table_row'>
-                        <td className='table_col_1 data'>{row.position}</td>
-                        <td className='table_col_2 data'>{row.username}</td>
-                        <td className='table_col_3 data'>{row.points}</td>
-                    </tr>
-                    ))}
+                        {points.map((row, index) => (
+                            <tr key={index} className='table_row'>
+                                <td className='table_col_1 data'>{index + 1}</td>
+                                <td className='table_col_2 data'>{row.username}</td>
+                                <td className='table_col_3 data'>{row.totalPoints}</td>
+                            </tr>
+                        ))}
+                    
                 </tbody>
             </table>
+            ) : (
+                <div className='loader'></div>
+            )}
         </section>
     )
 }
