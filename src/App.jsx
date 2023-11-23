@@ -60,7 +60,7 @@ function App() {
           element={<Races returnedApiData={returnedApiData} />} />
         <Route path='predictions' element={<Predictions returnedApiData={returnedApiData} />} />
         <Route path='standings' element={<Standings />} />
-        <Route path='information' element={<Information />} />
+        {/* <Route path='information' element={<Information />} /> */}
       </Route>
       <Route path="/login" element={<LogIn />} />
       <Route path="/signup" element={<SignUp />} />

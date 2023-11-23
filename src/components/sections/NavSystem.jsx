@@ -47,12 +47,12 @@ export default function NavSystem() {
                         >
                             <FontAwesomeIcon icon={faRankingStar} className='nav_tab_icon' />
                         </NavLink>
-                        <NavLink 
+                        {/* <NavLink 
                             to={'/information'}
                             className={`nav_tab ${location.pathname === '/information' ? 'active' : ''}`} 
                         >
                             <FontAwesomeIcon icon={faCircleInfo} className='nav_tab_icon' />
-                        </NavLink>
+                        </NavLink> */}
                     </ul>
                 </nav>
         ) : (
@@ -76,12 +76,12 @@ export default function NavSystem() {
                         >
                             Standings
                         </NavLink>
-                        <NavLink 
+                        {/* <NavLink 
                             to={'/information'}
                             className={`nav_tab ${location.pathname === '/information' ? 'active' : ''}`} 
                         >
                             Information
-                        </NavLink>
+                        </NavLink> */}
                     </ul>
                 </nav>
         )}
