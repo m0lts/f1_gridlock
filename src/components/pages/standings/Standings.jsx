@@ -23,9 +23,6 @@ export default function Standings() {
         fetchUsersPoints();
     }, [])
 
-
-
-    console.log(points);
     return (
         <section className="standings_page">
             <h1>Standings</h1>

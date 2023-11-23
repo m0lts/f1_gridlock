@@ -23,6 +23,8 @@ function App() {
     const [apiRequest, setApiRequest] = useState('races?season=2023&timezone=Europe/London');
     const [returnedApiData, setReturnedApiData] = useState([])
 
+    console.log(returnedApiData);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
