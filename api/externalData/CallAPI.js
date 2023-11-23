@@ -1,6 +1,3 @@
-import { config as configDotenv } from "dotenv";
-configDotenv();
-
 // Call API with whatever request is sent to backend
 
 export default async function handler(request, response) {
@@ -28,6 +25,8 @@ export default async function handler(request, response) {
                 response.status(200).json({ result })
             })
             .catch(error => console.log('error', error));
+
+            
         }
     } catch (error) {
         console.error(error);

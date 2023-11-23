@@ -1,7 +1,5 @@
 import { MongoClient } from "mongodb";
 import sendgrid from '@sendgrid/mail';
-import { config as configDotenv } from "dotenv";
-configDotenv();
 
 // Send grid API key
 sendgrid.setApiKey(process.env.SENDGRIDAPI_KEY);
