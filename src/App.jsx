@@ -28,7 +28,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/externalData/CallAPI', {
+                const response = await fetch('/api/externalData/CallAPI.js', {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/json',
