@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { circuitFlags, circuitTracks } from "../../../data/CircuitInfo";
+import { circuitFlags, circuitTracks } from "./CircuitInfo";
 import CompleteRaceRounds from "./CompleteRaceRounds";
 import './race_round.css'
 
