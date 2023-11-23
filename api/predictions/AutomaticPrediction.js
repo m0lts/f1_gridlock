@@ -47,7 +47,7 @@ export default async function handler(request, response) {
         // Get current time
         const currentTime = new Date().getTime();
 
-        if (currentTime < qualifyingStartTime) {
+        if (currentTime > qualifyingStartTime) {
             for (const userID of userIDs) {
                 // Check if the user has a prediction for the next race
                 const userPrediction = await predictionsCollection.findOne({ userID, competition: nextRaceID });
