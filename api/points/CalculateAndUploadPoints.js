@@ -100,6 +100,8 @@ export default async function handler(request, response) {
                         { $inc: { totalPoints: points } }
                     );
                     response.status(200).json({message: 'Points uploaded to standings collection.'})
+                } else {
+                    response.status(200).json({message: 'Points already uploaded for this race.'})
                 }
             }
         }
