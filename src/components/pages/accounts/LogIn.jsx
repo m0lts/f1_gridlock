@@ -2,6 +2,7 @@ import { RedirectToSignup, SubmitButton } from "../../features/Buttons";
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import logo from "../../../assets/interface/logos/logo_notext_vector.svg";
 
 export default function LogIn() {
 
@@ -94,7 +95,7 @@ export default function LogIn() {
         <section className="gateway_page_body">
             <header className="gateway_page_header">
                 <Link to="/" className="gateway_page_logo_link">
-                    <img src='src/assets/interface/logos/logo_notext_vector.svg' alt="GridLock Logo" className="logo_img" />
+                    <img src={logo} alt="GridLock Logo" className="logo_img" />
                     <h1 className="logo_text">gridlock</h1>
                 </Link>
             </header>
