@@ -62,13 +62,14 @@ export default async function handler(request, response) {
         const standingsCollection = db.collection("standings");
         const racePredictions = await dbCollection.find({ competition: closestRace }).toArray();
 
+
         if (racePredictions.length === 0) {
             response.status(200).json({message: 'No predictions in database'})
         } else {
                     // Calculated points gained for each user
             for (const racePrediction of racePredictions) {
                 const userID = racePrediction.userID;
-                const userPrediction = racePrediction.userPrediction;
+                const userPrediction = racePrediction.driverIDs;
                 let points = 0;
             
                 userPrediction.forEach((driverID, index) => {
