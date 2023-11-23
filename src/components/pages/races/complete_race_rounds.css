@@ -40,8 +40,40 @@
     font-weight: 700;
     font-size: 1.5rem;
 }
+
+.race_result_full {
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    background-color: var(--dark-grey);
+}
+.race_result_full_item {
+    background-color: var(--white);
+    color: var(--black);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:50px;
+    width:350px;
+    margin: 0 auto;
+    padding:5px;
+}
+.race_result_full_position {
+    font-size: 0.8rem;
+}
+.race_result_full_number {
+    font-family: var(--number-font);
+}
+.race_result_full_driver {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.race_result_full_team {
+    width:50px;
+}
+
 @media screen and (max-width:768px) {
     .race_result_podium {
         margin-bottom: 50px;
     }
-  }
+}

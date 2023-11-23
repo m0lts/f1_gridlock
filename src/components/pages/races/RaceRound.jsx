@@ -180,7 +180,7 @@ export default function RaceRound({ apiData, competitionToShow, roundNumber, rac
                     </div>
                     {raceComplete ? (
                         <div className="selected_race_round_bottom_section race_complete" onClick={handleShowRaceResult}>
-                            <p>See race result</p>
+                            {!showRaceResult && <p>See race result</p>}
                             {showRaceResult && (
                                 <div>
                                     <CompleteRaceRounds 

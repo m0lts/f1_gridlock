@@ -1,8 +1,10 @@
 import { MongoClient } from "mongodb";
 import sendgrid from '@sendgrid/mail';
+import { config as configDotenv } from "dotenv";
+configDotenv();
 
 // Send grid API key
-sendgrid.setApiKey("***");
+sendgrid.setApiKey(process.env.SENDGRIDAPI_KEY);
 
 const uri = process.env.MONGODB_URI;
 const options = {};
@@ -43,7 +45,7 @@ export default async function handler(request, response) {
 
             // Generate random token
             const generateRandomToken = (length) => {
-                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                const characters = '0123456789';
                 let token = '';
                 for (let i = 0; i < length; i++) {
                 const randomIndex = Math.floor(Math.random() * characters.length);
@@ -51,7 +53,7 @@ export default async function handler(request, response) {
                 }
                 return token;
             };
-            const resetToken = generateRandomToken(10);
+            const resetToken = generateRandomToken(6);
 
             // Create object to enter into document
             const dataToEnter = {

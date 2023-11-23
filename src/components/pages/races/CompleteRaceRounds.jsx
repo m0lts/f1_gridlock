@@ -65,8 +65,11 @@ export default function CompleteRaceRounds({ raceID, podiumResult, fullResult })
         {fullResult && (
             <div className="race_result_full">
                 {returnedApiData.map((position, index) => (
-                    <div key={index}>
-                        <p>{position.driver.abbr}</p>
+                    <div key={index} className='race_result_full_item'>
+                        <p className='race_result_full_position'>P{index + 1}</p>
+                        <p className='race_result_full_number'>{position.driver.number}</p>
+                        <p className='race_result_full_driver'>{position.driver.name}</p>
+                        <img className='race_result_full_team' src={position.team.logo} />
                     </div>
                 ))}
             </div>

@@ -1,5 +1,8 @@
+import { config as configDotenv } from "dotenv";
+configDotenv();
+
 var myHeaders = new Headers();
-myHeaders.append("x-rapidapi-key", "1835076bca70dce25b3140b61a996a98");
+myHeaders.append("x-rapidapi-key", process.env.RAPIDAPI_KEY);
 myHeaders.append("x-rapidapi-host", "v1.formula-1.api-sports.io");
 
 var requestOptions = {

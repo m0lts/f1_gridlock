@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { SubmitButton } from "../../features/Buttons";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {

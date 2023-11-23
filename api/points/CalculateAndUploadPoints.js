@@ -1,4 +1,6 @@
 import { MongoClient } from "mongodb";
+import { config as configDotenv } from "dotenv";
+configDotenv();
 
 const uri = process.env.MONGODB_URI;
 const options = {};
@@ -19,7 +21,7 @@ export default async function handler(request, response) {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "v1.formula-1.api-sports.io",
-                "x-rapidapi-key": "1835076bca70dce25b3140b61a996a98"
+                "x-rapidapi-key": process.env.RAPIDAPI_KEY
             }
         });
         const raceIDData = await raceIDQuery.json();
@@ -49,7 +51,7 @@ export default async function handler(request, response) {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "v1.formula-1.api-sports.io",
-                "x-rapidapi-key": "1835076bca70dce25b3140b61a996a98"
+                "x-rapidapi-key": process.env.RAPIDAPI_KEY
             }
         });
         const raceResult = await raceResultQuery.json();
