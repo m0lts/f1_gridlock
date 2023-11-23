@@ -62,7 +62,7 @@ export default async function handler(request, response) {
         const standingsCollection = db.collection("standings");
         const racePredictions = await dbCollection.find({ competition: closestRace }).toArray();
 
-        if (!racePredictions) {
+        if (racePredictions.length === 0) {
             response.status(200).json({message: 'No predictions in database'})
         }
 
