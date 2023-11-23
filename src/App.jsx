@@ -1,4 +1,3 @@
-import NavSystem from './components/sections/NavSystem';
 import Races from './components/pages/races/Races';
 import Predictions from './components/pages/predictions/Predictions';
 import LogIn from './components/pages/accounts/LogIn';
