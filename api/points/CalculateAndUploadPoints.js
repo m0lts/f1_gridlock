@@ -64,51 +64,53 @@ export default async function handler(request, response) {
 
         if (racePredictions.length === 0) {
             response.status(200).json({message: 'No predictions in database'})
-        }
-
-        // Calculated points gained for each user
-        for (const racePrediction of racePredictions) {
-            const userID = racePrediction.userID;
-            const userPrediction = racePrediction.userPrediction;
-            let points = 0;
-        
-            userPrediction.forEach((driverID, index) => {
-                if (top10Drivers.includes(driverID)) {
-                    points += 1;
-                    if (index < 10 && driverID === top10Drivers[index]) {
-                        points += 2;
+        } else {
+                    // Calculated points gained for each user
+            for (const racePrediction of racePredictions) {
+                const userID = racePrediction.userID;
+                const userPrediction = racePrediction.userPrediction;
+                let points = 0;
+            
+                userPrediction.forEach((driverID, index) => {
+                    if (top10Drivers.includes(driverID)) {
+                        points += 1;
+                        if (index < 10 && driverID === top10Drivers[index]) {
+                            points += 2;
+                        }
                     }
-                }
-            });
-        
-            if (points === 30) {
-                points += 10;
-            }
-        
-            const existingUser = await standingsCollection.findOne({ userID });
-        
-            if (!existingUser) {
-                await standingsCollection.insertOne({
-                    userID,
-                    points: [{ competition: closestRace, points }],
-                    totalPoints: points,
                 });
-                response.status(200).json({message: 'Points uploaded to standings collection.'})
-            } else {
-                const existingCompetitionPoints = existingUser.points.find(point => point.competition === closestRace);
-
-                if (!existingCompetitionPoints) {
-                    await standingsCollection.findOneAndUpdate(
-                        { userID },
-                        { $push: { points: { competition: closestRace, points } } },
-                        { $inc: { totalPoints: points } }
-                    );
+            
+                if (points === 30) {
+                    points += 10;
+                }
+            
+                const existingUser = await standingsCollection.findOne({ userID });
+            
+                if (!existingUser) {
+                    await standingsCollection.insertOne({
+                        userID,
+                        points: [{ competition: closestRace, points }],
+                        totalPoints: points,
+                    });
                     response.status(200).json({message: 'Points uploaded to standings collection.'})
                 } else {
-                    response.status(200).json({message: 'Points already uploaded for this race.'})
+                    const existingCompetitionPoints = existingUser.points.find(point => point.competition === closestRace);
+
+                    if (!existingCompetitionPoints) {
+                        await standingsCollection.findOneAndUpdate(
+                            { userID },
+                            { $push: { points: { competition: closestRace, points } } },
+                            { $inc: { totalPoints: points } }
+                        );
+                        response.status(200).json({message: 'Points uploaded to standings collection.'})
+                    } else {
+                        response.status(200).json({message: 'Points already uploaded for this race.'})
+                    }
                 }
             }
+
         }
+
 
     } catch (error) {
         console.error(error);
