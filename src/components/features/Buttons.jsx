@@ -28,8 +28,7 @@ function Icon({isLoggedIn}) {
 
 function SignupIcon({isLoggedIn}) {
     if (isLoggedIn) {
-        return 
-        (<span className="hideSignUpBtn">
+        return (<span className="hideSignUpBtn">
         </span>);
     }
     return (<span>

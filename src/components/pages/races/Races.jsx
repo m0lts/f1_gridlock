@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import RaceRound from './RaceRound'
-import { circuitFlags } from '../../../data/CircuitInfo';
+import { circuitFlags } from '/src/data/CircuitInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './races.css'
