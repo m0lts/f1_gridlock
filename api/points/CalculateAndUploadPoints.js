@@ -89,6 +89,7 @@ export default async function handler(request, response) {
                     points: [{ competition: closestRace, points }],
                     totalPoints: points,
                 });
+                response.status(200).json({message: 'Points uploaded to standings collection.'})
             } else {
                 const existingCompetitionPoints = existingUser.points.find(point => point.competition === closestRace);
 
@@ -98,6 +99,7 @@ export default async function handler(request, response) {
                         { $push: { points: { competition: closestRace, points } } },
                         { $inc: { totalPoints: points } }
                     );
+                    response.status(200).json({message: 'Points uploaded to standings collection.'})
                 }
             }
         }
